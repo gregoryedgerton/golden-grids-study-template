@@ -108,9 +108,13 @@ Pushing to `main` builds and publishes to GitHub Pages. The base path derives
 from the repository name inside the workflow, so nothing in the build config
 needs editing after a fork.
 
-**One manual step**, which cannot be done from inside the repo: in the
-repository's *Settings → Pages*, set *Source* to **GitHub Actions**. Do this
-once, before the first push.
+**One step outside the repo**, done once before the first push: point the
+repository's Pages source at GitHub Actions. Either in *Settings → Pages → Source
+→ GitHub Actions*, or from a terminal with the GitHub CLI:
+
+```bash
+gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow
+```
 
 ## Pre-publish checklist
 
