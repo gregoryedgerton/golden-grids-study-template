@@ -47,3 +47,17 @@ npm run preview
 
 Pushing to `main` deploys to GitHub Pages via `.github/workflows/pages.yml`.
 Base path derives from `GITHUB_REPOSITORY`; do not hard-code it.
+
+## Sandbox constraints
+
+The library README links this repo as its "try it without installing" path,
+opened in StackBlitz at `https://stackblitz.com/~/github.com/gregoryedgerton/golden-grids-study-template`.
+
+- **Vite stays on 7.x.** Vite 8 depends on rolldown, whose WebContainer
+  binding is a wasm download fetched at first run under an experimental WASI
+  runtime. It made the sandbox slow and fragile. Do not bump to 8 without
+  loading the StackBlitz link afterwards and watching it reach `VITE ready`.
+- `.stackblitzrc` pins install and start so the importer does not guess.
+- Do not append `?file=` to the `~/github.com` link; it made the IDE fail to
+  start in testing. The classic `/github/` importer accepts `?file=` but waits
+  on a WebSocket and can stall at "Cloning repo from GitHub".
