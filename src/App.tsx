@@ -2,6 +2,7 @@ import { useViewport } from "./lib/viewport";
 import { HeroBand } from "./bands/HeroBand";
 import { FactsBand } from "./bands/FactsBand";
 import { TailBand } from "./bands/TailBand";
+import { DialBand } from "./bands/DialBand";
 
 /**
  * A study is a short vertical stack of bands. Each band is one small-range
@@ -29,6 +30,7 @@ export function App() {
         <HeroBand />
         <FactsBand />
         <TailBand />
+        <DialBand />
       </main>
 
       <footer className="colophon">

@@ -43,3 +43,23 @@ export function placeholderImage(
     subject: `${Math.round(subject.x * 100)}% ${Math.round(subject.y * 100)}%`,
   };
 }
+
+/**
+ * A square "cover" for dial tiles: one bold numeral, one flat shape, a hue.
+ * Deliberately simple — album art survives thumbnail scale because it reads
+ * as an object, and that is the demand the dial makes of every tile. Sized to
+ * the tile texture box so the browser never upscales it.
+ */
+export function coverImage(n: number, hue: number, size = 512): string {
+  const shapes = [
+    `<circle cx="${size * 0.62}" cy="${size * 0.4}" r="${size * 0.22}"/>`,
+    `<rect x="${size * 0.5}" y="${size * 0.5}" width="${size * 0.38}" height="${size * 0.38}"/>`,
+    `<polygon points="${size * 0.55},${size * 0.8} ${size * 0.9},${size * 0.8} ${size * 0.725},${size * 0.45}"/>`,
+  ];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <rect width="100%" height="100%" fill="hsl(${hue} 55% 55%)"/>
+  <g fill="hsl(${hue + 180} 60% 30%)" opacity="0.85">${shapes[n % shapes.length]}</g>
+  <text x="${size * 0.08}" y="${size * 0.9}" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="800" font-size="${size * 0.42}" fill="hsl(${hue} 30% 12%)">${n}</text>
+</svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
