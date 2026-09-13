@@ -33,7 +33,7 @@ body {
 a { color: inherit; text-decoration-color: var(--accent); }
 
 /* Quality floor: visible keyboard focus. */
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
 
 /* Quality floor: reduced motion. This scaffold animates nothing, but a study
    that adds motion inherits the rule. A dial study must swap in a static
@@ -73,7 +73,7 @@ a { color: inherit; text-decoration-color: var(--accent); }
 
 /* --- Consumer-side patterns the catalogue bands use ---------------------- */
 /* Gutters without touching the grid: inset the content inside its slot. */
-.media--inset { position: absolute; inset: 4px; width: auto; height: auto; }
+.media.media--inset { position: absolute; inset: 4px; width: auto; height: auto; }
 /* Text over an image: an overlay INSIDE the hero box, on a scrim so the type
    meets AA against whatever the photograph does underneath it. */
 .overlay {
@@ -90,11 +90,14 @@ a { color: inherit; text-decoration-color: var(--accent); }
 .list ul { margin: 0; padding-left: 1.1em; }
 .list li { break-inside: avoid; }
 /* Stat tiles sized by their container, so a bento needs no breakpoint. */
-.stat { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; color: #1c1b18; }
+.stat { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+/* On the colour-progression fills the text is explicitly dark: the fills are
+   light in both schemes, so inheriting --fg would fail in dark mode. */
+.stat--on-fill { color: #1c1b18; }
 .stat__n { font-size: clamp(1.2rem, 30cqw, 9rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
 .stat__label { font-size: clamp(0.7rem, 4.5cqw, 1rem); opacity: 0.75; }
 /* Small text chips and buttons for scaffolding. */
-.chip { display: inline-block; font: 12px/1.3 ui-monospace, monospace; padding: 2px 6px; background: var(--tag-bg); color: var(--tag-fg); }
+.chip { display: inline-block; font: clamp(9px, 5cqw, 12px)/1.3 ui-monospace, monospace; padding: 2px 6px; background: var(--tag-bg); color: var(--tag-fg); }
 .btn { font: inherit; padding: 0.5em 1em; border: 2px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
 /* What a dropped band leaves behind: heading, note, and a visible stub. */
 .stub { border: 1px dashed var(--muted); padding: 1rem; color: var(--muted); font-size: 0.9rem; }

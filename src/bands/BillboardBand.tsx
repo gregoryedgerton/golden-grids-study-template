@@ -8,8 +8,8 @@ const art = placeholderImage("KEY ART", 1200, 1200, 340, { x: 0.5, y: 0.4 });
 /**
  * Band 2 — the peer pair, and the single box.
  *
- * 1–2 is the only range with no hierarchy: positions 1 and 2 are both value
- * 1, so the band is two equal squares. The FIRST child sits on the
+ * 1–2 is the only range starting at 1 with no hierarchy: positions 1 and 2
+ * are both value 1, so the band is two equal squares. The FIRST child sits on the
  * `placement` side. `clockwise` does nothing until a third square exists.
  *
  * 1–1 is the `single` render model: one full-bleed box, and every child
@@ -23,7 +23,7 @@ export function BillboardBand() {
     <Band
       id="billboard"
       title="Band 2 — Billboard (peer pair → single)"
-      lesson="1–2 has no hierarchy: two equal squares, first child on the placement side, clockwise a no-op. 1–1 is single: one box, every later child ignored — so the copy moves into the art box."
+      lesson="1–2 is the only range from 1 with no hierarchy: two equal squares, first child on the placement side, clockwise a no-op. 1–1 is single: one box, every later child ignored — so the copy moves into the art box."
       note={`from=1 to=${single ? 1 : 2} · placement="right" (first child on the right) · ${single ? "single: child 2 ignored, copy overlaid on child 1" : "2:1, no dominant box"} · lever: collapse + merge`}
     >
       <GoldenGrid from={1} to={single ? 1 : 2} placement="right">

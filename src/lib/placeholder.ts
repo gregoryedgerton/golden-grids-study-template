@@ -48,7 +48,7 @@ export function placeholderImage(
  * A square "cover" for dial tiles: one bold numeral, one flat shape, a hue.
  * Deliberately simple — album art survives thumbnail scale because it reads
  * as an object, and that is the demand the dial makes of every tile. Sized to
- * the tile texture box so the browser never upscales it.
+ * the tile texture box so the net scale at focus stays near 1.
  */
 export function coverImage(n: number, hue: number, size = 512): string {
   const shapes = [

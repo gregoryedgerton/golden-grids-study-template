@@ -8,9 +8,9 @@ const art = placeholderImage("KEY ART", 1000, 1000, 280, { x: 0.5, y: 0.35 });
 /**
  * Band 7 — title detail: promote a different child.
  *
- * Images survive demotion; prose does not. In a 5:3 band the 2-square is
- * 544px at 1440 — room for a synopsis — but 308px at 820 and 146px at 390,
- * under any readable measure. So below desktop the synopsis takes the hero
+ * Images survive demotion; prose does not. In this 5:3 band, capped at 60rem,
+ * the 2-square is 384px at 1440 — room for a synopsis — but 308px at 820 and
+ * 146px at 390, under any readable measure. So below desktop the synopsis takes the hero
  * and the art steps down to the 2-square. Same range, same placement, same
  * clockwise; only the order of the children changes. Lever: reorder.
  *
@@ -20,7 +20,7 @@ const art = placeholderImage("KEY ART", 1000, 1000, 280, { x: 0.5, y: 0.35 });
  * dropped silently and the slot renders empty.
  *
  * Register: each GoldenBox carries its own surface through the `style` prop
- * the library exposes — the one styling hook GoldenBox has.
+ * — one of the two styling hooks GoldenBox exposes (`style`, `className`).
  */
 const SYNOPSIS = {
   desktop: "Placeholder synopsis. Seventy words of it, so the slot is measured against a real paragraph rather than a short label. The point of this band is that this paragraph is legible in the hero at every width but not in the 2-square below desktop, which is why the order of the children changes and nothing else does. The real copy arrives against the word count in the asset spec.",

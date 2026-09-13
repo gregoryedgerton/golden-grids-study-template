@@ -52,7 +52,9 @@ Two geometry rules, verified against source, that every band relies on:
   `position: relative` div and nothing else; it accepts `className` and
   `style`. All visual styling is ours.
 - Only direct `GoldenBox` children count; a wrapper component or fragment is
-  dropped silently. `from={2}` is identical to `from={1}`. `from === to === 1`
+  dropped silently. `from={2}` skips position 1 alone:
+  a 1×1 placeholder, rendered first, filled by the last child, raw base colour.
+  Same rectangles as `from={1}`, different child mapping and colours. `from === to === 1`
   is `single`: one box, later children ignored.
 - DOM order is placeholder first, then slots smallest to largest: the hero is
   the last element.

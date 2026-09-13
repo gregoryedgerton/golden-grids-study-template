@@ -25,7 +25,7 @@ export function App() {
 
   return (
     <>
-      <a className="skip" href="#defaults">Skip to content</a>
+      <a className="skip" href="#content">Skip to content</a>
       <header className="masthead">
         {/* STUDY: replace with the study's name and one-line structural claim. */}
         <h1>Layout study — [REFERENCE PAGE]</h1>
@@ -40,7 +40,7 @@ export function App() {
         </p>
       </header>
 
-      <main>
+      <main id="content">
         <DefaultsBand />
         <BillboardBand />
         <GalleryBand />

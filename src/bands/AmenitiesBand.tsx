@@ -13,7 +13,9 @@ const items = ["Wifi", "Kitchen", "Washer", "Dryer", "Air conditioning", "Heatin
  * units, smaller than the smallest visible box, so it never dominates; it is a
  * real slot with a real job (the call to action). Two things are easy to get
  * wrong: it is rendered FIRST in the DOM but filled by the LAST GoldenBox
- * child, and `from={2}` is identical to `from={1}` (nothing is skipped).
+ * child, and `from={2}` is not a shortcut for `from={1}` — it skips position
+ * 1 alone and makes a 1×1 placeholder with the same rectangles, so the child
+ * mapping and colours differ. Only `from={1}` has no placeholder.
  *
  * Lever: open the range. At 390 `from` drops to 1, the placeholder vanishes,
  * and the same three children fall into three visible slots — no reorder.

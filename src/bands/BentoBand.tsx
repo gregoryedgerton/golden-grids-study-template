@@ -18,7 +18,8 @@ const stats = [
  *
  * `color` is a hue walk from a base hex: the SMALLEST box sits nearest the
  * base colour and the hero furthest — 180° away, plus 15° per box past four —
- * with lightness spread 3% per box. Pick a base light enough that dark text
+ * with a total lightness spread of 3% × box count centred on the base (±6%
+ * over four boxes, so 4% per step). Pick a base light enough that dark text
  * clears AA on every step; the text colour is set explicitly, not inherited.
  */
 export function BentoBand() {
@@ -26,14 +27,14 @@ export function BentoBand() {
     <Band
       id="bento"
       title="Band 5 — Bento (no breakpoint)"
-      lesson="Not every band needs a breakpoint: numbers scale with container units. color walks the hue 180° from the smallest box to the hero, lightness ±3% per box."
+      lesson="Not every band needs a breakpoint: numbers scale with container units. color walks the hue 180° from the smallest box to the hero, lightness spread 3% × box count, ±6% over four boxes."
       note='from=1 to=4 · placement="right" · clockwise=false · color="#e8dcc0" · hero left · no useViewport call · lever: none'
       cap="60rem"
     >
       <GoldenGrid from={1} to={4} placement="right" clockwise={false} color="#e8dcc0">
         {stats.map((s, i) => (
           <GoldenBox key={i}>
-            <div className="copy stat">
+            <div className="copy stat stat--on-fill">
               <span className="stat__n">{s.n}</span>
               <span className="stat__label">child {i + 1} · {s.label}</span>
             </div>

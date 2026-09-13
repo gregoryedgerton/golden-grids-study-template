@@ -14,7 +14,8 @@ import { Band } from "./Band";
  *
  * Line-less: no outline, no colour. Boxes exist only where copy sits. The
  * prose is a different length per width: the asset spec gives a word count
- * per slot per width, because a 3:2 hero is 816px at 1440 and 244px at 390.
+ * per slot per width, because this 3:2 hero is 597px at 1440 (56rem cap) and
+ * 244px at 390.
  */
 const PROSE = {
   desktop: "Placeholder prose. Lorem ipsum stands in for the copy slot's word count only; the asset spec in the README says how many words this box holds at each width, and the real copy arrives against that number. Do not loosen the structure to fit copy that has not arrived. Do not call the study finished while this paragraph is still here. Ninety words is roughly this long, which is the point of writing it out rather than pasting a shorter placeholder.",

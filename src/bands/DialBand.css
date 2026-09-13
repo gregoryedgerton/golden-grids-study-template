@@ -9,9 +9,10 @@
   height: 100svh;
   overflow: hidden;
   background: var(--bg);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  /* Borders live on .dial, not the stage: the stage's clientHeight is the
+     camera's viewport and must equal the 100svh depth step exactly. */
 }
+.dial { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .dial__tile {
   position: absolute;
   left: 0;
@@ -41,7 +42,8 @@
    corner-anchored chip would be. */
 .dial__label .media__tag {
   left: 50%; bottom: 12%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(var(--inv, 1));
+  transform-origin: 50% 100%;
   font-size: 20px; padding: 6px 12px;
 }
 .dial__readout {

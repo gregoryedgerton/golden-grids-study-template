@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useReducedMotion } from "../lib/motion";
 import {
   GoldenGrid,
   GoldenBox,
@@ -30,15 +31,17 @@ import "./DialBand.css";
  *     recommends trying both. `toCssContentTransform(frame)` on the art is
  *     the other answer.)
  *   - Each tile renders into a fixed 512px texture box and the source art is
- *     512px square, so nothing is upscaled at focus.
+ *     512px square, so the net raster scale stays near 1 at focus — at or
+ *     below 1 while the stage's smaller side is under ~826px (0.62 × 826).
+ *     A study that must hold that on a large stage sizes the texture from the
+ *     measured stage instead.
  *   - The trail grows into the open side of the stage: right when landscape,
  *     below when portrait. Solved per count with `trailToRotateDeg`.
- *   - `prefers-reduced-motion` swaps in a flat GoldenGrid of the same covers.
- *     A static layout, not a slower dial. Requirement, not polish.
+ *   - `prefers-reduced-motion` swaps in a flat GoldenGrid of the first five
+ *     covers. A static layout, not a slower dial. Requirement, not polish.
  */
 const COUNT = 13;
 const TEXTURE_PX = 512;
-const REDUCED = "(prefers-reduced-motion: reduce)";
 
 function fibonacci(n: number): number[] {
   const seq = [1, 1];
@@ -53,22 +56,14 @@ function clamp(v: number, lo: number, hi: number): number {
 const covers = Array.from({ length: COUNT }, (_, i) => coverImage(i + 1, (i * 47 + 20) % 360, TEXTURE_PX));
 
 export function DialBand() {
-  const [reduced, setReduced] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(REDUCED).matches
-  );
-  useEffect(() => {
-    const media = window.matchMedia(REDUCED);
-    const onChange = () => setReduced(media.matches);
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
-  }, []);
+  const reduced = useReducedMotion();
 
   return (
     <Band
       id="dial"
       title="Band 11 — Spiral dial"
       note={reduced
-        ? "prefers-reduced-motion: static GoldenGrid of the same covers"
+        ? "prefers-reduced-motion: static GoldenGrid of the first five covers, 1–5 top (8:5)"
         : `${COUNT} squares · scroll-bound depth · covers turn, labels stay upright`}
     >
       {reduced ? <StaticFallback /> : <Dial />}
@@ -76,10 +71,12 @@ export function DialBand() {
   );
 }
 
-/** The static answer to reduced motion: the first five covers as a flat grid. */
+/** The static answer to reduced motion: the first five covers as a flat grid.
+ *  Five boxes with `top` is 8:5 landscape (odd count → top/bottom); `right`
+ *  would be 5:8 portrait and over 2000px tall at 1440. */
 function StaticFallback() {
   return (
-    <GoldenGrid from={1} to={5} placement="right" outline="1px solid var(--line)">
+    <GoldenGrid from={1} to={5} placement="top" outline="1px solid var(--line)">
       {covers.slice(0, 5).map((src, i) => (
         <GoldenBox key={i}>
           <figure className="media">
@@ -111,8 +108,11 @@ function Dial() {
       const stage = stageRef.current;
       const body = bodyRef.current;
       if (!stage || !body) return;
+      // Camera and cull measure the stage's content box; the depth step is
+      // one whole 100svh of travel, which is the stage's border box.
       const width = stage.clientWidth;
       const height = stage.clientHeight;
+      const step = stage.offsetHeight || height;
       if (!width || !height) return;
 
       // Which side is open is the stage's shape, measured, never assumed.
@@ -123,7 +123,7 @@ function Dial() {
       }
 
       const top = body.getBoundingClientRect().top + window.scrollY;
-      const depth = clamp((window.scrollY - top) / height, 0, COUNT - 1);
+      const depth = clamp((window.scrollY - top) / step, 0, COUNT - 1);
       const frame = spiralCamera(layout, depth, width, height);
 
       layout.squares.forEach((square, k) => {
@@ -135,9 +135,14 @@ function Dial() {
         tile.style.opacity = String(opacity);
         tile.style.visibility = hidden || !onScreen ? "hidden" : "visible";
         // The label overlay counter-rotates about the tile centre so it reads
-        // upright while the cover beneath it turns with the spiral.
+        // upright while the cover beneath it turns with the spiral. The chip
+        // inside it is scaled back up by the tile's net scale so it stays a
+        // readable size on a small stage, and fades on tiles too small to read.
         const label = tile.lastElementChild as HTMLElement;
         label.style.transform = toCssContentTransform(frame, { cover: false });
+        const net = (frame.scale * square.size) / TEXTURE_PX;
+        label.style.setProperty("--inv", String(Math.min(1 / Math.max(net, 0.01), 3)));
+        label.style.opacity = net < 0.2 ? "0" : "1";
       });
 
       if (readoutRef.current) {
@@ -164,7 +169,7 @@ function Dial() {
 
   return (
     <div className="dial" ref={bodyRef} style={{ height: `${COUNT * 100}svh` }}>
-      <div className="dial__stage" ref={stageRef} aria-label="Spiral dial of placeholder covers">
+      <div className="dial__stage" ref={stageRef} role="group" aria-label="Spiral dial of placeholder covers">
         {layout.squares.map((_, k) => (
           <div
             key={k}
