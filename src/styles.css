@@ -65,9 +65,49 @@ a { color: inherit; text-decoration-color: var(--accent); }
 .masthead__viewport { font-size: 0.8rem; color: var(--muted); }
 
 .band { padding-block: 1.5rem; }
-.band__header { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; align-items: baseline; margin-bottom: 0.75rem; }
-.band__title { font-size: 1rem; margin: 0; }
+.band__header { margin-bottom: 0.75rem; }
+.band__title { font-size: 1rem; margin: 0 0 0.25rem; }
+.band__lesson { max-width: var(--measure); margin: 0 0 0.25rem; font-size: 0.9rem; }
 .band__note { font-size: 0.8rem; color: var(--muted); margin: 0; font-family: ui-monospace, monospace; }
+.band__wrap { width: 100%; }
+
+/* --- Consumer-side patterns the catalogue bands use ---------------------- */
+/* Gutters without touching the grid: inset the content inside its slot. */
+.media--inset { position: absolute; inset: 4px; width: auto; height: auto; }
+/* Text over an image: an overlay INSIDE the hero box, on a scrim so the type
+   meets AA against whatever the photograph does underneath it. */
+.overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 6%;
+  background: linear-gradient(to bottom, transparent 35%, rgba(0, 0, 0, 0.72));
+  color: #fff;
+}
+.overlay h3 { margin: 0 0 0.25em; font-size: clamp(1.1rem, 9cqw, 3rem); line-height: 1.05; }
+.overlay p { margin: 0; font-size: clamp(0.8rem, 3.2cqw, 1.1rem); max-width: 40ch; }
+/* A flat list in ONE slot: CSS columns, not one box per item. */
+.list { columns: 2; column-gap: 1.5rem; font-size: clamp(0.8rem, 2.4cqw, 1rem); }
+.list ul { margin: 0; padding-left: 1.1em; }
+.list li { break-inside: avoid; }
+/* Stat tiles sized by their container, so a bento needs no breakpoint. */
+.stat { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; color: #1c1b18; }
+.stat__n { font-size: clamp(1.2rem, 30cqw, 9rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
+.stat__label { font-size: clamp(0.7rem, 4.5cqw, 1rem); opacity: 0.75; }
+/* Small text chips and buttons for scaffolding. */
+.chip { display: inline-block; font: 12px/1.3 ui-monospace, monospace; padding: 2px 6px; background: var(--tag-bg); color: var(--tag-fg); }
+.btn { font: inherit; padding: 0.5em 1em; border: 2px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+/* What a dropped band leaves behind: heading, note, and a visible stub. */
+.stub { border: 1px dashed var(--muted); padding: 1rem; color: var(--muted); font-size: 0.9rem; }
+/* Video fills a slot like an image; reduced motion shows the poster instead. */
+.media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.media .media__poster { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .media video { display: none; }
+  .media .media__poster { display: block; }
+}
+.copy h3 { margin: 0 0 0.25em; font-size: clamp(1rem, 8cqw, 2.5rem); line-height: 1.05; }
+.copy--center { display: flex; flex-direction: column; justify-content: center; }
+.copy--quote p { font-size: clamp(1rem, 4.2cqw, 2rem); line-height: 1.25; font-style: italic; max-width: 30ch; }
 
 /* --- How media fills a slot -------------------------------------------- */
 /* GoldenBox is 100% × 100% of its positioned parent and applies nothing else.

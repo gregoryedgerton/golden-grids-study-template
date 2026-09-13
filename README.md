@@ -47,15 +47,16 @@ live page disagree, the live page wins.]
 A study is a short vertical stack of bands. Each band is one small-range
 `GoldenGrid` with one editorial job. Bands stack; they never nest.
 
-| Band | Range (`from`–`to`) at 390 / 820 / 1440 | `placement` | Editorial job |
-| ---- | ---------------------------------------- | ----------- | ------------- |
-| [1]  | [1–3 / 1–4 / 1–5]                        | [right]     | [Hero and supporting shots] |
-| [2]  | [1–4 / 3–5 / 3–5]                        | [bottom]    | [Facts; skipped range on tablet and desktop] |
-| [3]  | [1–3 / 1–4 / 1–4]                        | [left]      | [Description and map] |
+| Band | Range (`from`–`to`) at 390 / 820 / 1440 | `placement` · `clockwise` | Editorial job | Responsive lever |
+| ---- | ---------------------------------------- | ------------------------- | ------------- | ---------------- |
+| [1]  | [1–4 / 1–4 / 1–4]                        | [bottom / right / right · cw] | [Hero and supporting shots] | [rotate placement] |
+| [2]  | [1–1 / 1–2 / 1–2]                        | [right · cw]              | [Billboard]   | [collapse + merge] |
+| [3]  | [...]                                    |                           |               |                  |
 
 Breakpoints live in one place, [`src/lib/viewport.ts`](src/lib/viewport.ts).
-Each band picks its own range and placement from the viewport; no band carries
-a media query.
+Each band picks its own range, placement, and children from the viewport; no
+band carries a media query. The template's catalogue (below) shows one lever
+per band; a study uses whichever its reference page needs.
 
 ## Asset spec
 
@@ -146,20 +147,38 @@ Quality floor, inherited from the template:
 
 ## For the template itself
 
-Everything in `src/bands/` is scaffolding for a study author to delete. It
-exists to show four things a new user gets wrong:
+The example page is a **catalogue**: eleven bands, each one copyable pattern,
+one responsive lever, and one thing the library does that is easy to get
+wrong. A study author keeps the bands the reference page needs and deletes
+the rest. Everything in `src/bands/` is scaffolding.
 
-1. **Bands stack, they do not nest.** Three small grids, three editorial jobs.
-2. **Placement varies between bands** so the spiral does not advance the same
-   way three times running.
-3. **The skipped-range case.** `FactsBand` uses `from={3}`. The skipped
-   positions collapse into one placeholder slot that is rendered first in the
-   DOM but filled by the **last** `GoldenBox` child. All preceding children map
-   largest to smallest across the visible slots.
-4. **Media fills a slot with `object-fit: cover`.** `GoldenBox` sizes itself
-   to 100% of the slot and applies nothing else; the fill is consumer CSS. The
-   hero image passes its subject position through as `object-position`, the
-   escape hatch for a subject a centred crop would lose.
+| # | Band | Range 390 / 820 / 1440 | placement · clockwise | Dominant | Lever | Teaches |
+| - | ---- | ---------------------- | --------------------- | -------- | ----- | ------- |
+| 1 | Bare defaults | 1–4 all | bottom / right / right · cw | image | rotate placement | No props is 1–4, right, clockwise. `placement` names where the spiral starts, so the default puts the hero on the **left**. Hero is the **last** element in the DOM. |
+| 2 | Billboard | 1–1 / 1–2 / 1–2 | right · cw | text over image | collapse + merge | 1–2 has no hierarchy; first child on the placement side; `clockwise` a no-op. 1–1 is `single`: later children ignored, so the copy moves into the art box. |
+| 3 | Gallery | 1–3 / 1–4 / 1–5 | top / left / bottom · cw | photos | shrink + rotate in lockstep | Orientation is count × placement: right/left is landscape with an even count, top/bottom with an odd one. Declare all five; `to` trims. |
+| 4 | Editorial | 1–3 all | top · ccw / ccw / cw | prose | flip clockwise | `clockwise` mirrors the hero only with an odd count; with an even count only the tail reverses. Word count per width. |
+| 5 | Bento | 1–4 all | right · ccw | numbers | none | Container-unit type needs no breakpoint. `color` walks the hue 180° from smallest box to hero, lightness ±3% per box. |
+| 6 | Amenities | 1–3 / 3–4 / 3–4 | top · cw | list | open `from` | A list gets one slot. `from=3` collapses positions 1–2 into a 2×1 placeholder: F(from)×F(from−1), rendered first, filled by the **last** child. `from=2` equals `from=1`. |
+| 7 | Title detail | 1–4 all | left · ccw | prose ↔ art | reorder children | Images survive demotion, prose does not. Map data straight to `GoldenBox`; wrappers and fragments are dropped silently. `GoldenBox` takes `style` and `className`. |
+| 8 | Poster card | 1–3 all | left · cw | image | cap width | Height follows width; a 2:3 band at 1360px is 2040px tall. Cap the parent's width, never re-range the grid. |
+| 9 | Whitespace | 1–5 all | bottom · ccw | quote | shorten children | Children are positional: too few leaves the smallest slots empty; an empty `<GoldenBox />` blanks a specific one. |
+| 10 | Trailer | dropped / 1–4 / 1–4 | left · cw | video | drop the band | You cannot remove one slot from a spiral, so the unit of removal is the whole band. Video fills like an image; reduced motion shows the poster. |
+| 11 | Spiral dial | 13 squares | trail solved per stage | covers | reduced motion → flat grid | `spiralCamera` + per-tile transforms, bound to scroll. Covers turn, labels counter-rotate, 512px textures, static fallback. |
+
+Two rules the catalogue is built on, both verified against the 5.0.0 source:
+
+- **Parity.** Let *n* be the visible boxes plus one if there is a placeholder.
+  `right`/`left` give a landscape band only when *n* is even; `top`/`bottom`
+  only when *n* is odd.
+- **Hero side.** The largest box lands on the `placement` side turned
+  *n − 2* quarter-turns in the spiral's direction. At *n* = 4 it is opposite
+  the placement; at *n* = 3 one step round; at *n* = 2 the first child sits on
+  the placement side.
+
+All eight `placement` × `clockwise` orientations appear at least once. Tall
+bands are capped in width (`cap` on `Band`) because the grid is `width: 100%`
+of its parent with an inline aspect ratio; the parent owns the width.
 
 Verified against `@gifcommit/golden-grids` 5.0.0 source: `GoldenGrid` props
 are `from` (default 1), `to` (default 4), `color`, `outline`, `clockwise`

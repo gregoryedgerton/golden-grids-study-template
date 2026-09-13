@@ -66,7 +66,7 @@ export function DialBand() {
   return (
     <Band
       id="dial"
-      title="Band 10 — Spiral dial"
+      title="Band 11 — Spiral dial"
       note={reduced
         ? "prefers-reduced-motion: static GoldenGrid of the same covers"
         : `${COUNT} squares · scroll-bound depth · covers turn, labels stay upright`}

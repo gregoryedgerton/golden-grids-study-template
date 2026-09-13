@@ -26,6 +26,21 @@ true of.
   placeholder content and call the study done.
 - No CSS framework, no design system, no routing, no state library, no tests.
 
+## The catalogue
+
+`src/App.tsx` stacks eleven bands from `src/bands/`. Each is one copyable
+pattern with one responsive lever and one lesson; the README's "For the
+template itself" table lists them. A study keeps what it needs and deletes the
+rest. Do not add a band that teaches something another band already teaches.
+Keep all eight `placement` × `clockwise` orientations represented.
+
+Two geometry rules, verified against source, that every band relies on:
+
+- Parity: with *n* = visible boxes (+1 for a placeholder), `right`/`left` are
+  landscape only when *n* is even; `top`/`bottom` only when *n* is odd.
+- Hero side: the largest box sits on the `placement` side turned *n − 2*
+  quarter-turns in the spiral's direction (opposite at 4, one step at 3).
+
 ## API facts, verified against 5.0.0 source
 
 - `GoldenGrid` props: `from` (1), `to` (4), `color`, `outline`, `clockwise`
@@ -34,7 +49,16 @@ true of.
 - When `from > 1`, the skipped positions collapse into one placeholder slot,
   rendered first in the DOM and filled by the **last** `GoldenBox` child.
 - Structural CSS is auto-injected. `GoldenBox` renders a 100%×100%
-  `position: relative` div and nothing else; all visual styling is ours.
+  `position: relative` div and nothing else; it accepts `className` and
+  `style`. All visual styling is ours.
+- Only direct `GoldenBox` children count; a wrapper component or fragment is
+  dropped silently. `from={2}` is identical to `from={1}`. `from === to === 1`
+  is `single`: one box, later children ignored.
+- DOM order is placeholder first, then slots smallest to largest: the hero is
+  the last element.
+- The dial (`DialBand.tsx`) uses `spiralCamera`, `toCssTileTransform`,
+  `spiralWindow`, `tileOnScreen`, `toCssContentTransform`, `trailToRotateDeg`
+  directly, per `docs/spiral-dial.md` in the library repo.
 
 ## Commands
 
