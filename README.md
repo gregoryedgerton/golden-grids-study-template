@@ -91,6 +91,22 @@ survive the crop at all three widths.
 [Name what looks worse than the original and why. A study where everything
 worked is an advertisement, and readers discount all of it.]
 
+## Study tools
+
+A floating panel (top right, its own stacking layer, styled independently of
+the study) carries the controls every study shares:
+
+- **Show grids** (`g`) — marching-ants outline on every grid, a dotted edge
+  and a DOM-order label on every slot (placeholder first, then smallest to
+  largest — the hero is last), the placeholder in magenta with a P.
+- **Band notes** (`n`) — the per-band `from` / `to` / `placement` readouts.
+
+Both are off by default so a study reads as its reference does. Toggles made
+in the panel persist per browser; `?inspect=1&notes=1` turns them on for one
+load, which is how overlay captures are taken. The panel is
+[`src/lib/tools.tsx`](src/lib/tools.tsx) and `tools.css`; it accepts children,
+so a study can add its own controls without touching its stylesheet.
+
 ## Running it
 
 ```bash

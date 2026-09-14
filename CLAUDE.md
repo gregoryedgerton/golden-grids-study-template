@@ -20,6 +20,9 @@ true of.
 - Bands stack; they never nest. No wrapper component over `GoldenGrid` — the
   study exists to show the real API being used directly.
 - Breakpoints live only in `src/lib/viewport.ts`. Three states, never two.
+- Study tools (`src/lib/tools.tsx`) are the only floating UI. Controls go
+  there, on their own stacking layer; the study's stylesheet never styles them.
+  Grid outlines and band notes are off by default.
 - Media fills a slot with `object-fit: cover`; per-image `object-position` is
   the escape hatch. Never reshape a band to suit an image.
 - Pass one ends with the asset spec in `README.md` filled in. Do not invent

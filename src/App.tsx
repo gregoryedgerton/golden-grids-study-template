@@ -1,4 +1,4 @@
-import { useViewport } from "./lib/viewport";
+import { Tools } from "./lib/tools";
 import { DefaultsBand } from "./bands/DefaultsBand";
 import { BillboardBand } from "./bands/BillboardBand";
 import { GalleryBand } from "./bands/GalleryBand";
@@ -21,10 +21,9 @@ import { DialBand } from "./bands/DialBand";
  * deletes the rest. All content is scaffolding.
  */
 export function App() {
-  const viewport = useViewport();
-
   return (
     <>
+      <Tools />
       <a className="skip" href="#content">Skip to content</a>
       <header className="masthead">
         {/* STUDY: replace with the study's name and one-line structural claim. */}
@@ -34,9 +33,6 @@ export function App() {
           Template catalogue: eleven bands, each one lever and one lesson. Orientation is
           box count × placement; hero side follows the spiral; the parent owns the width.
           Delete what the study does not need.
-        </p>
-        <p className="masthead__viewport" aria-live="polite">
-          viewport: <code>{viewport}</code>
         </p>
       </header>
 
