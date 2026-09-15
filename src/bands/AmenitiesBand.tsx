@@ -1,5 +1,6 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
+import { useExpand, ExpandedCell } from "../lib/expand";
 import { Band } from "./Band";
 
 const items = ["Wifi", "Kitchen", "Washer", "Dryer", "Air conditioning", "Heating", "Workspace", "TV", "Parking", "Crib", "Gym", "Pool"];
@@ -19,8 +20,12 @@ const items = ["Wifi", "Kitchen", "Washer", "Dryer", "Air conditioning", "Heatin
  *
  * Lever: open the range. At 390 `from` drops to 1, the placeholder vanishes,
  * and the same three children fall into three visible slots — no reorder.
+ *
+ * The call to action in the placeholder strip expands the LIST slot, not its
+ * own: a trigger and the cell it opens need not be the same box.
  */
 export function AmenitiesBand() {
+  const x = useExpand();
   const from = useViewport() === "mobile" ? 1 : 3;
   const to = from === 1 ? 3 : 4;
   return (
@@ -32,11 +37,19 @@ export function AmenitiesBand() {
       cap="60rem"
     >
       <GoldenGrid from={from} to={to} placement="top" outline="1px solid var(--line)">
-        <GoldenBox>
+        <GoldenBox {...x.boxProps}>
           <div className="copy list">
             <span className="media__tag">child 1 · list in one slot</span>
             <ul>{items.map((it) => <li key={it}>[{it}]</li>)}</ul>
           </div>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title="Everything the slot could not hold" onClose={x.close} closeRef={x.closeRef}>
+              <div className="cell__group">
+                <h4>All {items.length * 4} items</h4>
+                <ul>{items.concat(items, items, items).map((it, i) => <li key={i}>[{it} {i + 1}]</li>)}</ul>
+              </div>
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox>
           <div className="copy copy--center">
@@ -48,7 +61,7 @@ export function AmenitiesBand() {
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">
             <span className="media__tag">{from > 1 ? "child 3 · PLACEHOLDER" : "child 3 · smallest slot"}</span>
-            <p><button type="button" className="btn">[Show all 12]</button></p>
+            <p><button className="btn" {...x.triggerProps}>[Show all 12]</button></p>
           </div>
         </GoldenBox>
       </GoldenGrid>

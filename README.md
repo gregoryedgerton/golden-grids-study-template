@@ -91,6 +91,45 @@ survive the crop at all three widths.
 [Name what looks worse than the original and why. A study where everything
 worked is an advertisement, and readers discount all of it.]
 
+## Interactions: expand a cell
+
+Content a slot cannot hold is the obvious objection to fixed-proportion
+boxes. The answer here is not a modal: the slot that shows the summary
+becomes the whole band and shows the rest. The band grows to fit it and
+everything below moves down, so the page scrolls as one and nothing scrolls
+inside a box.
+
+Two entry points, both in the catalogue:
+
+- **Any photograph.** In Band 3 every photograph is its own control — click
+  one and that slot expands. The picture is the affordance, so a reader
+  never has to hunt for a call to action.
+- **A call to action.** In Band 6 the button in the placeholder strip
+  expands the LIST slot, not its own. A trigger and the cell it opens need
+  not be the same box.
+
+Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`.
+`useExpandGroup()` is the primitive: several slots in a band can be
+expandable, at most one is open, and the keys are the band's own.
+`useExpand()` is the single-slot case. The `GoldenBox` that owns the summary
+gets `cell--expanded`, and `:has()` rules release the grid's inline aspect
+ratio, take the sibling slots and the replaced summary out of the flow, and
+return the expanded slot to normal flow where its content sets the height.
+The library is not touched.
+
+What the overlay implies, and therefore does:
+
+- Everything the panel covers is `inert` while it is open — the summary
+  beside it, the trigger under it, every sibling slot — so nothing
+  underneath can be tabbed to or read.
+- Escape closes only the panel that contains focus. A form field elsewhere
+  keeps its own Escape.
+- One cell at a time, across the whole page.
+- Focus moves to the close control on every mount, so a breakpoint change
+  that remounts the panel in a different slot does not drop focus; on close
+  it returns to the trigger that opened it.
+- Nothing animates. The content moving is the feedback.
+
 ## Study tools
 
 A floating panel (top right, its own stacking layer, styled independently of
@@ -172,10 +211,10 @@ the rest. Everything in `src/bands/` is scaffolding.
 | - | ---- | ---------------------- | --------------------- | -------- | ----- | ------- |
 | 1 | Bare defaults | 1–4 all | bottom / right / right · cw | image | rotate placement | No props is 1–4, right, clockwise. `placement` names where the spiral starts, so the default puts the hero on the **left**. Hero is the **last** element in the DOM. |
 | 2 | Billboard | 1–1 / 1–2 / 1–2 | right · cw | text over image | collapse + merge | 1–2 has no hierarchy; first child on the placement side; `clockwise` a no-op. 1–1 is `single`: later children ignored, so the copy moves into the art box. |
-| 3 | Gallery | 1–3 / 1–4 / 1–5 | top / left / bottom · cw | photos | shrink + rotate in lockstep | Orientation is count × placement: right/left is landscape with an even count, top/bottom with an odd one. Declare all five; `to` trims. |
+| 3 | Gallery | 1–3 / 1–4 / 1–5 | top / left / bottom · cw | photos | shrink + rotate in lockstep | Orientation is count × placement: right/left is landscape with an even count, top/bottom with an odd one. Declare all five; `to` trims. **Every photograph expands its own slot.** |
 | 4 | Editorial | 1–3 all | top · ccw / ccw / cw | prose | flip clockwise | `clockwise` mirrors the hero only with an odd count; with an even count only the tail reverses. Word count per width. |
 | 5 | Bento | 1–4 all | right · ccw | numbers | none | Container-unit type needs no breakpoint. `color` walks the hue 180° from smallest box to hero, lightness spread 3% × box count, centred on the base (±6% over four boxes). |
-| 6 | Amenities | 1–3 / 3–4 / 3–4 | top · cw | list | open `from` | A list gets one slot. `from=3` collapses positions 1–2 into a 2×1 placeholder: F(from)×F(from−1), rendered first, filled by the **last** child. `from=2` still makes a 1×1 placeholder; only `from=1` has none. |
+| 6 | Amenities | 1–3 / 3–4 / 3–4 | top · cw | list | open `from` | A list gets one slot. `from=3` collapses positions 1–2 into a 2×1 placeholder: F(from)×F(from−1), rendered first, filled by the **last** child. `from=2` still makes a 1×1 placeholder; only `from=1` has none. **Its CTA expands a different slot.** |
 | 7 | Title detail | 1–4 all | left · ccw | prose ↔ art | reorder children | Images survive demotion, prose does not. Map data straight to `GoldenBox`; wrappers and fragments are dropped silently. `GoldenBox` takes `style` and `className`. |
 | 8 | Poster card | 1–3 all | left · cw | image | cap width | Height follows width; a 2:3 band at 1360px is 2040px tall. Cap the parent's width, never re-range the grid. |
 | 9 | Whitespace | 1–5 all | bottom · ccw | quote | shorten children | Children are positional: too few leaves the smallest slots empty; an empty `<GoldenBox />` blanks a specific one. |

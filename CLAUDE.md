@@ -23,6 +23,10 @@ true of.
 - Study tools (`src/lib/tools.tsx`) are the only floating UI. Controls go
   there, on their own stacking layer; the study's stylesheet never styles them.
   Grid outlines and band notes are off by default.
+- Expansion (`src/lib/expand.tsx`) is how a slot shows content it cannot hold:
+  the band grows, nothing scrolls inside a box, and the covered content goes
+  inert. Every photograph should be expandable — points of interaction are
+  encouraged, and the picture is the affordance.
 - Media fills a slot with `object-fit: cover`; per-image `object-position` is
   the escape hatch. Never reshape a band to suit an image.
 - Pass one ends with the asset spec in `README.md` filled in. Do not invent
