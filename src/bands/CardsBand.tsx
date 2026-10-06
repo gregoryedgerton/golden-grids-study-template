@@ -52,10 +52,10 @@ export function CardsBand() {
           </Figure>
         </GoldenBox>
         <GoldenBox>
-          <Fact label="[Number]" fitClass="fit--num" spoken="[the number, read aloud]">{"1.618…"}</Fact>
+          <LinkBox label="[§ II · Section]" href="#defaults">[Where the reader goes next]</LinkBox>
         </GoldenBox>
         <GoldenBox>
-          <LinkBox label="[§ II · Section]" href="#defaults">[Next]</LinkBox>
+          <Fact label="[Number]" fitClass="fit--num" spoken="[the number, read aloud]">{"1.618…"}</Fact>
         </GoldenBox>
         <GoldenBox>
           <Fact label="[Small]" fitClass="fit--num">φ</Fact>
