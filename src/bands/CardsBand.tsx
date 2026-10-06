@@ -55,7 +55,7 @@ export function CardsBand() {
           <LinkBox label="[§ II · Section]" href="#defaults">[Where the reader goes next]</LinkBox>
         </GoldenBox>
         <GoldenBox>
-          <Fact label="[Number]" fitClass="fit--num" spoken="[the number, read aloud]">{"1.618…"}</Fact>
+          <Fact label="[Number]" fitClass="fit--num" spoken="[the number, read aloud]">{"5"}</Fact>
         </GoldenBox>
         <GoldenBox>
           <Fact label="[Small]" fitClass="fit--num">φ</Fact>
