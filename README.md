@@ -112,6 +112,8 @@ template's `CLAUDE.md` states each as a rule with its conditions.
 
 Copy is about the subject, not the grid; marketing and account modules are
 rebuilt where the format has them, with plain copy for a fictional service.
+Grids run full width, type fills the squares content does not, and the type
+set is one set with the headline capped near 120px.
 
 ---
 

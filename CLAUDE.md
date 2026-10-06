@@ -64,6 +64,16 @@ the study's own copy, straight and plausible, for a fictional service where
 one is needed; a form sends nothing and says so. Flat modules (a FAQ, a
 price table of peers) are lists, not grids.
 
+**Grids run full width, and type fills what content does not.** No width
+caps that leave a band standing in empty ground. When a band has fewer
+things than squares, the remaining squares carry type as a design element,
+a catalogue number, a date, a count, a word from the subject, rather than
+nothing. The type set is one set: body copy, lessons and captions are
+raised to carry as much as the headline, and the fitted line is capped
+(about 120px) so the delta between largest and smallest type stays within
+roughly eight to one. Body copy comes in two lengths and the square's
+height picks one; it is never buried and never cut. (Greg, Study 05.)
+
 **Type fits its square.** Copy slots use `Fact`, `Figure` and `LinkBox` from
 `src/lib/boxes.tsx`: a label, a line of type fitted to the room the square
 leaves it (`src/lib/fit.tsx`, a binary search on font-size), optional body
