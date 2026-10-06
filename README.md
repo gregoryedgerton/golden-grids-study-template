@@ -1,134 +1,99 @@
 # Layout study — [REFERENCE PAGE]
 
-> **Template notice.** This repo was forked from
+> **Template notice.** Forked from
 > [golden-grids-study-template](https://github.com/gregoryedgerton/golden-grids-study-template).
-> Every `[BRACKETED]` field below is a blank. The pre-publish checklist at the
-> bottom fails while any remain. Delete this notice once the study is real.
+> Every `[BRACKETED]` field is a blank; delete this notice once the study is
+> real. Keep the README short and true to the page as built: a reader should
+> be able to check every claim in it against the deploy.
 
-**Live:** [LIVE URL — `https://<owner>.github.io/<repo>/`]
+**Live:** [`https://<owner>.github.io/<repo>/`]
 
-An unaffiliated layout study. It rebuilds the structure of a named page using
+An unaffiliated layout study. It rebuilds the structure of a named page as
 stacked golden grids, so the comparison is between two ways of laying out the
-same content hierarchy. All imagery and copy here are original. Nothing from
-the reference site — photography, wordmarks, marketing copy — is reproduced.
-
-Built with [Golden Grids](https://github.com/gregoryedgerton/golden-grids)
-([npm](https://www.npmjs.com/package/@gifcommit/golden-grids) ·
-[generator](https://gregoryedgerton.github.io/golden-grids/)).
-
----
+same content hierarchy. [Say here where the imagery and copy come from: all
+original, or a stated licence.] Nothing from the reference site — photography,
+wordmarks, marketing copy — is reproduced. Built with
+[Golden Grids](https://github.com/gregoryedgerton/golden-grids) from the
+[study template](https://github.com/gregoryedgerton/golden-grids-study-template).
 
 ## Reference
 
-**Page:** [NAME OF PAGE] — [URL]
+[Page, URL], captured [date] at 390 / 820 / 1440 ([`captures/`](captures/)).
+[Two or three sentences on what the capture shows about the reference's
+structure, measured, not remembered.]
 
-**Captured:** [DATE]. Full-page captures at the three reference widths live in
-[`captures/`](captures/). They are the left half of every side-by-side below.
-
-| Width  | Reference                              | Rebuild                            |
-| ------ | -------------------------------------- | ---------------------------------- |
-| 390px  | ![](captures/reference-390.png)        | ![](captures/study-390.png)        |
-| 820px  | ![](captures/reference-820.png)        | ![](captures/study-820.png)        |
-| 1440px | ![](captures/reference-1440.png)       | ![](captures/study-1440.png)       |
+| Width | Reference | Rebuild |
+| --- | --- | --- |
+| 390px | ![](captures/reference-390.png) | ![](captures/study-390.png) |
+| 820px | ![](captures/reference-820.png) | ![](captures/study-820.png) |
+| 1440px | ![](captures/reference-1440.png) | ![](captures/study-1440.png) |
 
 ## The claim
 
-[ONE SENTENCE. The structural argument this study makes. If there is no
-distinct claim, the study is redundant.]
+[One sentence: the structural argument. If there is no distinct claim, the
+study is redundant.]
 
-## Structural inventory
+## The page
 
-[The reference page's blocks, their relative weights, and what its grid does
-with them. Derived from the captures, not from memory — where memory and the
-live page disagree, the live page wins.]
+[Pages and] bands in order. Measured sizes are width×height at 390 / 820 /
+1440.
 
-## Bands
+| Band | Range · placement · clockwise | Measured | What it holds |
+| --- | --- | --- | --- |
+| [1 Name] | [1–4 · right · cw (1–3 bottom at 390)] | [366² / 771×514 / 1360×816] | [the content, in the subject's terms] |
 
-A study is a short vertical stack of bands. Each band is one small-range
-`GoldenGrid` with one editorial job. Bands stack; they never nest.
+Breakpoints live in [`src/lib/viewport.ts`](src/lib/viewport.ts); no band
+carries a media query.
 
-| Band | Range (`from`–`to`) at 390 / 820 / 1440 | `placement` · `clockwise` | Editorial job | Responsive lever |
-| ---- | ---------------------------------------- | ------------------------- | ------------- | ---------------- |
-| [1]  | [1–4 / 1–4 / 1–4]                        | [bottom / right / right · cw] | [Hero and supporting shots] | [rotate placement] |
-| [2]  | [1–1 / 1–2 / 1–2]                        | [right · cw]              | [Billboard]   | [collapse + merge] |
-| [3]  | [...]                                    |                           |               |                  |
+## [The subject]
 
-Breakpoints live in one place, [`src/lib/viewport.ts`](src/lib/viewport.ts).
-Each band picks its own range, placement, and children from the viewport; no
-band carries a media query. The template's catalogue (below) shows one lever
-per band; a study uses whichever its reference page needs.
+[Where the content comes from: the asset spec filled, the licence, the
+provenance file. For a fictional service, say so and that forms send
+nothing.]
 
-## Asset spec
+## How it works
 
-The handoff artifact. Pass one of a study ends here: structure built, every
-slot inventoried. Pass two fills these slots with real assets. Do not fill them
-with invented placeholder content and call the study finished.
-
-Media fills its slot with `object-fit: cover`. The slot owns the crop, so no
-aspect ratio is specified — only resolution, subject placement, and what must
-survive the crop at all three widths.
-
-### Images
-
-| Slot | Band | Role | Min. resolution | Subject placement | Safe area |
-| ---- | ---- | ---- | --------------- | ----------------- | --------- |
-| [hero] | [1] | [The room that sells the place] | [1600×1000] | [subject upper-right; `object-position: 68% 42%`] | [what must survive at 390, 820, and 1440 — the intersection, not the desktop crop] |
-| [...]  |     |      |                 |                   |           |
-
-### Copy
-
-| Slot | Band | Role | Words at 390 / 820 / 1440 |
-| ---- | ---- | ---- | ------------------------- |
-| [title] | [1] | [Property name] | [4 / 6 / 8] |
-| [...]   |     |                 |             |
-
-## What worked
-
-[...]
+[Only what applies, one bullet each: type fitted to its square; expansion
+and item bands; clips and the player; figures; register and the scheme that
+is the reference's; the scan results.]
 
 ## What did not
 
-[Name what looks worse than the original and why. A study where everything
-worked is an advertisement, and readers discount all of it.]
+[At least one honest entry. What looks worse than the reference, and why.]
 
-## Interactions: expand a cell
+## Study tools
 
-Content a slot cannot hold is the obvious objection to fixed-proportion
-boxes. The answer here is not a modal: the slot that shows the summary
-becomes the whole band and shows the rest. The band grows to fit it and
-everything below moves down, so the page scrolls as one and nothing scrolls
-inside a box.
+A floating panel (top right) toggles grid outlines (`g`), band notes (`n`,
+which carry each band's range and placement) and reduced motion (`m`).
 
-Two entry points, both in the catalogue:
+## Running and deploying
 
-- **Any photograph.** In Band 3 every photograph is its own control — click
-  one and that slot expands. The picture is the affordance, so a reader
-  never has to hunt for a call to action.
-- **A call to action.** In Band 6 the button in the placeholder strip
-  expands the LIST slot, not its own. A trigger and the cell it opens need
-  not be the same box.
+```bash
+npm install
+npm run dev
+```
 
-Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`.
-`useExpandGroup()` is the primitive: several slots in a band can be
-expandable, at most one is open, and the keys are the band's own.
-`useExpand()` is the single-slot case. The `GoldenBox` that owns the summary
-gets `cell--expanded`, and `:has()` rules release the grid's inline aspect
-ratio, take the sibling slots and the replaced summary out of the flow, and
-return the expanded slot to normal flow where its content sets the height.
-The library is not touched.
+`npm run build` type-checks and builds to `dist/`; pushing to `main` deploys
+to GitHub Pages (once: point the repo's Pages source at GitHub Actions,
+`gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`). The
+library is consumed from npm at its published version, never linked locally.
 
-What the overlay implies, and therefore does:
+## Pre-publish checklist
 
-- Everything the panel covers is `inert` while it is open — the summary
-  beside it, the trigger under it, every sibling slot — so nothing
-  underneath can be tabbed to or read.
-- Escape closes only the panel that contains focus. A form field elsewhere
-  keeps its own Escape.
-- One cell at a time, across the whole page.
-- Focus moves to the close control on every mount, so a breakpoint change
-  that remounts the panel in a different slot does not drop focus; on close
-  it returns to the trigger that opened it.
-- Nothing animates. The content moving is the feedback.
+- [ ] The reference is named with a URL; the unaffiliated line is on the
+      page and here; nothing from the reference is in the repo or deploy.
+- [ ] Every slot holds real content; no placeholders, no `[BRACKETS]`.
+- [ ] The band table matches the source and the measured sizes.
+- [ ] No band title, lesson or caption describes the grid; the copy is the
+      subject's, plain.
+- [ ] `captures/scan.cjs` is clean in both engines and schemes at three
+      widths; the skip link is first in the tab order; every control has a
+      distinct name.
+- [ ] Both schemes render and the README says which is the reference's;
+      reduced motion gives a static page, tested with the device setting.
+- [ ] "What did not" has at least one honest entry.
+
+---
 
 ## The standard
 
@@ -147,82 +112,6 @@ template's `CLAUDE.md` states each as a rule with its conditions.
 
 Copy is about the subject, not the grid; marketing and account modules are
 rebuilt where the format has them, with plain copy for a fictional service.
-
-## Study tools
-
-A floating panel (top right, its own stacking layer, styled independently of
-the study) carries the controls every study shares:
-
-- **Show grids** (`g`) — marching-ants outline on every grid, a dotted edge
-  and a DOM-order label on every slot (placeholder first, then smallest to
-  largest — the hero is last), the placeholder in magenta with a P.
-- **Band notes** (`n`) — the per-band `from` / `to` / `placement` readouts.
-
-Both are off by default so a study reads as its reference does. Toggles made
-in the panel persist per browser; `?inspect=1&notes=1` turns them on for one
-load, which is how overlay captures are taken. The panel is
-[`src/lib/tools.tsx`](src/lib/tools.tsx) and `tools.css`; it accepts children,
-so a study can add its own controls without touching its stylesheet.
-
-## Running it
-
-```bash
-npm install
-npm run dev
-```
-
-`npm run build` type-checks and builds to `dist/`. The library is consumed from
-the npm registry at its published version, never linked from a local checkout,
-so the study exercises what the public installs. A bug found this way belongs
-in an [issue](https://github.com/gregoryedgerton/golden-grids/issues).
-
-## Deploying
-
-Pushing to `main` builds and publishes to GitHub Pages. The base path derives
-from the repository name inside the workflow, so nothing in the build config
-needs editing after a fork.
-
-**One step outside the repo**, done once before the first push: point the
-repository's Pages source at GitHub Actions. Either in *Settings → Pages → Source
-→ GitHub Actions*, or from a terminal with the GitHub CLI:
-
-```bash
-gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow
-```
-
-## Pre-publish checklist
-
-Brand constraints, from the program brief:
-
-- [ ] The reference page is named, with a URL, in the README and on the page.
-- [ ] The unaffiliated-study line is visible on the page and in the README.
-- [ ] No photography, wordmark, or marketing copy from the reference site
-      appears anywhere in the repo or the deploy. Captures in `captures/` are
-      commentary and are not used as assets.
-- [ ] Every image and copy slot holds real content produced against the asset
-      spec. No placeholder images, no lorem ipsum.
-- [ ] The asset spec above is complete: every slot listed with resolution,
-      subject placement, safe area, and word counts.
-- [ ] The band table matches the source.
-- [ ] "What did not" has at least one honest entry.
-
-Quality floor, inherited from the template:
-
-- [ ] Checked and legible at 390px, 820px, and 1440px. Rebuild captures at all
-      three are in `captures/`.
-- [ ] Visible keyboard focus on every interactive element.
-- [ ] `prefers-reduced-motion` produces a real static layout, not slower motion;
-      tested with the device setting on, in WebKit as well as Chrome.
-- [ ] Both colour schemes render; the README says which is the reference's.
-- [ ] `captures/scan.cjs` is clean: nothing overflows its box, no fitted line
-      under 12px, no axe-core violations, in both engines and schemes.
-- [ ] No band title, lesson or caption describes the grid; the copy is the
-      subject's, in a plain register.
-- [ ] Every control has a distinct accessible name; the skip link is first in
-      the tab order.
-- [ ] Text contrast meets WCAG AA against whatever it sits on, including images.
-- [ ] Images that carry meaning have alt text; decorative ones have `alt=""`.
-- [ ] No `[BRACKETED]` blanks remain anywhere in the repo.
 
 ---
 
