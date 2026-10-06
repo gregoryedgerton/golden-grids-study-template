@@ -10,6 +10,7 @@ import { PosterBand } from "./bands/PosterBand";
 import { WhitespaceBand } from "./bands/WhitespaceBand";
 import { TrailerBand } from "./bands/TrailerBand";
 import { DialBand } from "./bands/DialBand";
+import { CardsBand } from "./bands/CardsBand";
 
 /**
  * A study is a short vertical stack of bands. Each band is one small-range
@@ -30,7 +31,7 @@ export function App() {
         <h1>Layout study — [REFERENCE PAGE]</h1>
         <p className="masthead__claim">[One sentence: the structural argument this study makes.]</p>
         <p className="masthead__claim">
-          Template catalogue: eleven bands, each one lever and one lesson. Orientation is
+          Template catalogue: twelve bands, each one lever and one lesson. Orientation is
           box count × placement; hero side follows the spiral; the parent owns the width.
           Delete what the study does not need.
         </p>
@@ -47,6 +48,7 @@ export function App() {
         <PosterBand />
         <WhitespaceBand />
         <TrailerBand />
+        <CardsBand />
         <DialBand />
       </main>
 

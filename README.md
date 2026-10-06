@@ -130,6 +130,24 @@ What the overlay implies, and therefore does:
   it returns to the trigger that opened it.
 - Nothing animates. The content moving is the feedback.
 
+## The standard
+
+What every study built from this template does, and where to find it. The
+template's `CLAUDE.md` states each as a rule with its conditions.
+
+| | Where | What |
+| --- | --- | --- |
+| Type fits its square | `src/lib/fit.tsx`, `src/lib/boxes.tsx`, Band 12 | One fact per square, set as large as the square allows; nothing cut; formulae break only where written; a spoken form for lines that do not read as written |
+| Depth in flow | `src/lib/expand.tsx`, Bands 3 and 6 | Expansion in place, inert cover, focus handling; an item from a row opens its own band |
+| Media | `src/lib/clip.tsx`, Band 10 | Clips in squares, silent, in view only, stills under reduced motion; the whole work on request |
+| Schemes | `src/styles.css` tokens | Light and dark by device preference; per-scheme label colour |
+| Motion | `src/styles.css`, `src/lib/motion.ts` | `transition: none`; static layouts, not slower ones |
+| Fonts | `src/lib/fonts.ts` | Display type held until the faces load |
+| Scans | `captures/scan.cjs` | Overflow, fitted-line floor and axe-core, in Chrome and WebKit, both schemes, three widths |
+
+Copy is about the subject, not the grid; marketing and account modules are
+rebuilt where the format has them, with plain copy for a fictional service.
+
 ## Study tools
 
 A floating panel (top right, its own stacking layer, styled independently of
@@ -193,7 +211,15 @@ Quality floor, inherited from the template:
 - [ ] Checked and legible at 390px, 820px, and 1440px. Rebuild captures at all
       three are in `captures/`.
 - [ ] Visible keyboard focus on every interactive element.
-- [ ] `prefers-reduced-motion` produces a real static layout, not slower motion.
+- [ ] `prefers-reduced-motion` produces a real static layout, not slower motion;
+      tested with the device setting on, in WebKit as well as Chrome.
+- [ ] Both colour schemes render; the README says which is the reference's.
+- [ ] `captures/scan.cjs` is clean: nothing overflows its box, no fitted line
+      under 12px, no axe-core violations, in both engines and schemes.
+- [ ] No band title, lesson or caption describes the grid; the copy is the
+      subject's, in a plain register.
+- [ ] Every control has a distinct accessible name; the skip link is first in
+      the tab order.
 - [ ] Text contrast meets WCAG AA against whatever it sits on, including images.
 - [ ] Images that carry meaning have alt text; decorative ones have `alt=""`.
 - [ ] No `[BRACKETED]` blanks remain anywhere in the repo.
@@ -202,7 +228,7 @@ Quality floor, inherited from the template:
 
 ## For the template itself
 
-The example page is a **catalogue**: eleven bands, each one copyable pattern,
+The example page is a **catalogue**: twelve bands, each one copyable pattern,
 one responsive lever, and one thing the library does that is easy to get
 wrong. A study author keeps the bands the reference page needs and deletes
 the rest. Everything in `src/bands/` is scaffolding.
@@ -218,8 +244,9 @@ the rest. Everything in `src/bands/` is scaffolding.
 | 7 | Title detail | 1–4 all | left · ccw | prose ↔ art | reorder children | Images survive demotion, prose does not. Map data straight to `GoldenBox`; wrappers and fragments are dropped silently. `GoldenBox` takes `style` and `className`. |
 | 8 | Poster card | 1–3 all | left · cw | image | cap width | Height follows width; a 2:3 band at 1360px is 2040px tall. Cap the parent's width, never re-range the grid. |
 | 9 | Whitespace | 1–5 all | bottom · ccw | quote | shorten children | Children are positional: too few leaves the smallest slots empty; an empty `<GoldenBox />` blanks a specific one. |
-| 10 | Trailer | dropped / 1–4 / 1–4 | left · cw | video | drop the band | You cannot remove one slot from a spiral, so the unit of removal is the whole band. Video fills like an image; reduced motion shows the poster. |
+| 10 | Trailer | dropped / 1–4 / 1–4 | left · cw | clip | drop the band | You cannot remove one slot from a spiral, so the unit of removal is the whole band. `Clip` plays silently while on screen and is its poster under reduced motion; `Player` loads the whole work only on request. |
 | 11 | Spiral dial | 13 squares | trail solved per stage | covers | reduced motion → flat grid | `spiralCamera` + per-tile transforms, bound to scroll. Covers turn, labels counter-rotate, 512px textures, static fallback. |
+| 12 | Cards | 1–5 all | top · cw | fitted type | the fit | `Fact`, `Figure`, `LinkBox`: one fact per square, type sized to the square against a `flex: 1 1 0` container; supporting matter removed whole in small squares, never clipped; `fit--num` breaks only where written; `spoken` for lines that do not read aloud. |
 
 Two rules the catalogue is built on, both verified against the 5.0.0 source:
 

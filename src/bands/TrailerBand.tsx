@@ -2,6 +2,7 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { placeholderImage } from "../lib/placeholder";
 import { Band } from "./Band";
+import { Player } from "../lib/clip";
 
 const poster = placeholderImage("POSTER FRAME", 1280, 720, 200, { x: 0.5, y: 0.5 });
 const still = placeholderImage("STILL", 900, 900, 90);
@@ -16,9 +17,11 @@ const still = placeholderImage("STILL", 900, 900, 90);
  * removal is the whole editorial job. Below 640 the section keeps its heading
  * and note and renders a visible stub in place of the grid. Lever: drop.
  *
- * Video fills its slot like an image. Under `prefers-reduced-motion` the
- * stylesheet hides the video and shows the poster instead — a static
- * fallback, not a slower loop.
+ * Video fills its slot like an image, through `Clip` (src/lib/clip.tsx):
+ * silent, looping, playing only while on screen, fetched only then, and
+ * replaced by its poster under `prefers-reduced-motion` or the tools
+ * panel's switch. `Player` adds a "Play the film" control that swaps in the
+ * whole work — a player embed or a video with controls — only when asked.
  */
 export function TrailerBand() {
   const dropped = useViewport() === "mobile";
@@ -26,7 +29,7 @@ export function TrailerBand() {
     <Band
       id="trailer"
       title="Band 10 — Trailer (drop the band)"
-      lesson="Dropping is a band-level decision: a missing child leaves an empty box, so the unit of removal is the whole editorial job. Video fills its slot like an image; reduced motion shows the poster."
+      lesson="Dropping is a band-level decision: a missing child leaves an empty box, so the unit of removal is the whole editorial job. A clip plays silently while on screen and is its poster under reduced motion; the whole work loads only when asked for."
       note={dropped ? "dropped below 640px by design · the heading and this stub remain · lever: drop" : 'from=1 to=4 · placement="left" · clockwise=true · hero right · <video> with object-fit: cover · lever: drop'}
     >
       {dropped ? (
@@ -34,13 +37,7 @@ export function TrailerBand() {
       ) : (
         <GoldenGrid from={1} to={4} placement="left" outline="1px solid var(--line)">
           <GoldenBox>
-            <figure className="media">
-              <video autoPlay muted loop playsInline poster={poster.src} aria-label="Placeholder trailer loop">
-                <source src={`${import.meta.env.BASE_URL}loop.webm`} type="video/webm" />
-              </video>
-              <img className="media__poster" src={poster.src} alt="Placeholder poster frame" />
-              <figcaption className="media__tag">child 1 · video · reduced motion shows poster</figcaption>
-            </figure>
+            <Player clip={`${import.meta.env.BASE_URL}loop.webm`} poster={poster.src} alt="Placeholder trailer loop" title="[TITLE]" video={`${import.meta.env.BASE_URL}loop.webm`} />
           </GoldenBox>
           <GoldenBox>
             <figure className="media">
