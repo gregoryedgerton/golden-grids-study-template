@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
  * outline prop, `open` bands inset their content and draw none.
  */
 export function Band({
-  id, title, lesson, note, cap, kind = "open", children,
+  id, title, lesson, note, cap, kind = "open", aside, children,
 }: {
   id: string;
   title: string;
@@ -20,12 +20,17 @@ export function Band({
   note?: string;
   cap?: string;
   kind?: "rule" | "open";
+  /** A control in the title row, to the right of the title: the Close of a band opened from a row. */
+  aside?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <section className={`band ${kind}`} id={id} aria-labelledby={`${id}-title`}>
       <header className="band__header">
-        <h2 id={`${id}-title`} className="band__title">{title}</h2>
+        <div className="band__row">
+          <h2 id={`${id}-title`} className="band__title">{title}</h2>
+          {aside}
+        </div>
         {lesson && <p className="band__lesson">{lesson}</p>}
         {note && <p className="band__note">{note}{cap ? ` · width capped at ${cap}` : ""}</p>}
       </header>

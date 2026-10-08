@@ -95,8 +95,10 @@ summarises, expands in place (`src/lib/expand.tsx`): the band grows,
 nothing scrolls inside a box, covered content goes inert, focus moves to
 the close control and returns on close. Every drill-down has ONE plain
 way out: a labelled Close (not an icon alone) at the top right of the
-opened container, in a sticky head so it stays reachable, plus Escape; a
-band opened from a row closes the same way. The study tools panel, which
+opened container, level with its title and to the title's right (never on a
+row of its own above it), in a sticky head so it stays reachable, plus Escape;
+a band opened from a row closes the same way, from `Band`'s `aside` slot; a
+player's Back to the clip sits top right of its frame. The study tools panel, which
 used to own the viewport's top-right corner, is hidden until it has a
 better trigger (`?tools=1` shows it). The Close is the study's SECONDARY CTA:
 `.cell__close` reads the `--cta2-*` tokens (font, padding, colour, ground,
