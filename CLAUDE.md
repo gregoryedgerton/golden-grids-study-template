@@ -139,6 +139,26 @@ they show, targets at least 24px, no horizontal scroll at 320px, Enter and
 Escape through every expansion. Write what the scan cannot check in the
 README: the smallest line, and that no screen-reader user has tested it.
 
+## Commits
+
+Every commit in a study follows [Conventional Commits](https://www.conventionalcommits.org/):
+`<type>: <subject>`, with an optional scope (`feat(menu): …`) and a `!` for a
+breaking change (`feat!: …`). Types in use: `feat` (a visible capability or
+content), `fix` (a defect: overflow, contrast, a wrong fact), `docs` (README,
+CLAUDE.md, specs), `style` (appearance only, no behaviour), `refactor`,
+`chore` (captures, assets, tooling), `build`, `ci`, `perf`, `test`.
+
+- The subject is lower case after the colon, imperative, under about 72
+  characters, with no full stop. Anything it cannot hold goes in the body.
+- One logical change per commit: a study's first pass is one `feat:`; a
+  rebrand, a new rule applied across the page, a favicon, each their own.
+- The body says why, and any measurement the change rests on (a threshold,
+  a width, a token). Keep the attribution trailers the session asks for.
+- Never `Study 07: …`, a bare sentence, or `README: …` as a subject; say
+  `feat:`, `docs:` and the rest.
+- History is not rewritten after a study is published, except to bring a
+  repo that broke this rule into line (Greg did that once, 2026-10-08).
+
 ## The catalogue
 
 `src/App.tsx` stacks twelve bands from `src/bands/`. Each is one copyable
