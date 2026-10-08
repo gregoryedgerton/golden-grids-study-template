@@ -22,8 +22,11 @@ import { ExpandedCell, type ExpandGroup } from "./expand";
 export interface Related { href: string; label: string }
 
 export function Fact({
-  label, children, fitClass, min, max, body, source, tone, align, spoken, expand, link,
+  label, children, fitClass, min, max, body, source, tone, align, spoken, expand, link, imprint,
 }: {
+  /** A decorative drawing behind the text, clipped by the box (a large faint
+   *  icon of the square's subject): the study's variation lever. */
+  imprint?: ReactNode;
   label?: string;
   children: ReactNode;
   fitClass?: string;
@@ -40,6 +43,7 @@ export function Fact({
   return (
     <>
       <div className={`box${tone ? ` box--${tone}` : ""}`}>
+        {imprint}
         {label && <p className="box__label">{label}</p>}
         <div className={`box__fit${align ? ` box__fit--${align}` : ""}`}>
           <Fit as="p" className={fitClass} min={min ?? 8} max={max} ariaLabel={spoken}>{children}</Fit>

@@ -70,6 +70,13 @@ raised to carry as much as the headline, and the fitted line is capped
 (about 120px) so the delta between largest and smallest type stays within
 roughly eight to one. Body copy comes in two lengths and the square's
 height picks one; it is never buried and never cut. (Greg, Study 05.)
+Squares carry MORE text than first seems to fit: body copy from about
+200px of height, the fuller passage from about 320px, a list of bullets only
+from about 480px, and every fact has a second sentence from the subject.
+Variation comes from a large faint drawing behind the text — an icon of the
+square's subject, drawn for the study, as the `imprint` of a `Fact`, clipped
+by the box and hidden under 90px — never from decoration unrelated to the
+subject. (Greg, Study 09.)
 
 **Type fits its square.** Copy slots use `Fact`, `Figure` and `LinkBox` from
 `src/lib/boxes.tsx`: a label, a line of type fitted to the room the square
