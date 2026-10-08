@@ -230,3 +230,10 @@ html[data-fonts-pending] .fit, html[data-fonts-pending] .masthead h1 { visibilit
 .player__open { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 0.5em; min-height: 36px; padding: 0.4em 0.9em; font: 500 0.85rem/1 var(--font); color: #000; background: rgba(255, 255, 255, 0.92); border: 0; border-radius: 4px; cursor: pointer; }
 .player__glyph { font-size: 0.8em; }
 .player__close { position: absolute; left: 12px; top: 12px; z-index: 2; min-height: 32px; padding: 0.3em 0.8em; font: 500 0.8rem/1 var(--font); color: #fff; background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 4px; cursor: pointer; }
+
+/* The template's secondary button (.btn): a 2px outline in the ink colour, square corners, inks over on hover. */
+:root {
+  --cta2-font: 500 15px/1.2 var(--font); --cta2-pad: 8px 14px; --cta2-min-h: 40px;
+  --cta2-color: var(--fg); --cta2-bg: transparent; --cta2-border: 2px solid var(--fg); --cta2-radius: 0;
+  --cta2-hover-bg: var(--fg); --cta2-hover-color: var(--bg);
+}
