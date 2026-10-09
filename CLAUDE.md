@@ -114,6 +114,24 @@ passage lists where it continues. When the reference is several pages, the
 study is several pages (one Vite entry each, plain relative links, no
 router) with a shared shell: contents strip, previous and next.
 
+**Grids are not formulaic.** Do not give every band `from={1}` and the next
+placement in the cycle. Skip a range in about half of them: `from` of 2, 3 or
+4 makes the library collapse the smaller squares into one strip, filled by the
+band's LAST child, so a module is a run of larger squares with a short wide
+figure at its corner. `src/lib/plan.ts` picks landscape or portrait and a
+placement from `src/lib/spiral.ts` (generated from the library's render model)
+and refuses a skip grid whose smallest square is under 104px or whose strip is
+under 64×100px, so below that width the same children fall back into a plain
+grid. Give neighbouring bands different `from`, size and lead side. (Greg,
+Study 11.)
+
+**Callouts are statistics, as large type.** A square that can be a number is a
+number (`fit--display fit--num`), with its source named in its foot, never a
+generic word. Cells carry information or answer back: body copy is fitted to
+its square so no square holds empty ground, a long page interleaves
+traditional paragraphs between its grids, and where a figure invites it a cell
+holds a small calculation the reader can change. (Greg, Study 11.)
+
 **Media supports the format.** Where the subject moves, the squares move:
 short clips cut from the source at the moment of the still (`Clip`,
 `src/lib/clip.tsx`), square, silent, looping, playing only while on screen
