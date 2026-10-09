@@ -5,8 +5,8 @@
 .dial { position: relative; }
 .dial__stage {
   position: sticky;
-  top: 0;
-  height: 100svh;
+  top: var(--study-banner-h, 0px);          /* below the study banner */
+  height: calc(100svh - var(--study-banner-h, 0px));
   overflow: hidden;
   background: var(--bg);
   /* Borders live on .dial, not the stage: the stage's clientHeight is the

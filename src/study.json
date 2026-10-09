@@ -1,0 +1,44 @@
+{
+  "number": "00",
+  "name": "[Reference site]",
+  "notice": "A layout study template, not a real website: the starting point for Golden Grids layout studies. Everything on this page is placeholder content.",
+  "pages": {
+    "index": "Template catalogue"
+  },
+  "summary": "A catalogue of twelve bands, each showing one layout pattern. A study copies the bands its reference needs and deletes the rest.",
+  "reviewed": {
+    "date": "[date]",
+    "method": "[How the reference was read: captured at 390, 820 and 1440 pixels, read in a browser, or rebuilt from its known structure without a capture.]",
+    "pages": [
+      {
+        "label": "[Each reference page, by name]",
+        "url": "https://example.com/"
+      }
+    ]
+  },
+  "real": [
+    "[What on the page is fact, and from where.]"
+  ],
+  "invented": [
+    "[What is fictional, reworded or substituted: the brand, the copy, the account, the prices.]"
+  ],
+  "assets": [
+    {
+      "what": "Photographs",
+      "source": "[Source and photographers]",
+      "licence": "[Licence]"
+    },
+    {
+      "what": "Text",
+      "source": "[The study's own, or the source it is adapted from]"
+    },
+    {
+      "what": "Typefaces",
+      "source": "[Family, and what it stands in for]",
+      "licence": "SIL Open Font License"
+    }
+  ],
+  "owner": "[the reference's owner]",
+  "repo": "https://github.com/gregoryedgerton/golden-grids-study-template",
+  "updated": "October 9, 2026"
+}
