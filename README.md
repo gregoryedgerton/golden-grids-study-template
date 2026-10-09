@@ -28,10 +28,10 @@ structure, measured, not remembered.]
 | 820px | ![](captures/reference-820.png) | ![](captures/study-820.png) |
 | 1440px | ![](captures/reference-1440.png) | ![](captures/study-1440.png) |
 
-## The claim
+## Approach
 
-[One sentence: the structural argument. If there is no distinct claim, the
-study is redundant.]
+[Two or three sentences: how the reference arranges this content, and how the
+study arranges it. Describe; do not argue that either is better.]
 
 ## The page
 
@@ -57,9 +57,18 @@ nothing.]
 and item bands; clips and the player; figures; register and the scheme that
 is the reference's; the scan results.]
 
-## What did not
+## Notes for review
 
-[At least one honest entry. What looks worse than the reference, and why.]
+Observations for whoever reviews this study, recorded without a verdict. Whether the layout suits the page is assessed separately, after every study has been reviewed.
+
+- [What differs from the reference, what is missing, what was not captured, measured or tested. State each as a fact.]
+
+## Disclosure
+
+Every page says what it is in three places, all read from
+[`src/study.json`](src/study.json): its title and description, a sticky notice
+at the top, and a disclosure at the very end listing the pages reviewed, what
+is real, what is invented or changed, and where each kind of asset came from.
 
 ## Study tools
 
@@ -91,7 +100,8 @@ library is consumed from npm at its published version, never linked locally.
       distinct name.
 - [ ] Both schemes render and the README says which is the reference's;
       reduced motion gives a static page, tested with the device setting.
-- [ ] "What did not" has at least one honest entry.
+- [ ] "Notes for review" records what a reviewer should know, as facts, without a verdict.
+- [ ] `src/study.json` is filled in: notice, pages reviewed, what is real, what is invented, asset sources.
 
 ---
 
