@@ -25,6 +25,8 @@ S = {
  "11-northwestern": ("GIFmutual", "sourcesans", {"wght": 700}, "#0e497b", "#ffb81c"),
  "12-hotnnow": ("GIFn'now", "archivo", {"wght": 900, "wdth": 125}, "#0b145f", "#febc12"),
  "13-airbnb": ("GIFbnb", "figtree", {"wght": 800}, "#e31c5f", "#ffffff"),
+ "14-homedepot": ("GIFdepot", "inter", {"wght": 800}, "#f96302", "#ffffff"),
+ "15-nvidia": ("GIFvidia", "barlowc", {}, "#000000", "#76b900"),
 }
 def font(name, axes):
     f = TTFont(F + name + ".ttf")
