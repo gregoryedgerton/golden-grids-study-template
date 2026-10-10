@@ -28,18 +28,30 @@ export function App() {
       <a className="skip" href="#content">Skip to content</a>
       <StudyBanner />
       <Tools />
-      <header className="masthead">
-        {/* STUDY: replace with the study's name and a one-line description of what it rebuilds. Describe; do not argue. */}
-        <h1>Layout study — [REFERENCE PAGE]</h1>
-        <p className="masthead__claim">[One sentence: what this study rebuilds and how it is arranged.]</p>
-        <p className="masthead__claim">
-          Template catalogue: twelve bands, each one lever and one lesson. Orientation is
-          box count × placement; hero side follows the spiral; the parent owns the width.
-          Delete what the study does not need.
-        </p>
+      {/* STUDY: rebuild the reference's own header and nav here: the parody
+          name where its logo is, its nav items, its search. Do not write
+          "layout study" or the reference's name; the banner above and the
+          disclosure below say that on every page. */}
+      <header className="top">
+        <a className="wordmark" href="#content">GIFname</a>
+        <nav className="top__nav" aria-label="Primary">
+          <ul>
+            <li><a href="#content" aria-current="page">[Nav item]</a></li>
+            <li><span>[Nav item]</span></li>
+            <li><span>[Nav item]</span></li>
+          </ul>
+        </nav>
       </header>
-
       <main id="content">
+        <div className="masthead">
+          {/* STUDY: the page's own title and opening line, as the reference sets them. */}
+          <h1>[The page's title]</h1>
+          <p className="masthead__claim">
+            Template catalogue: twelve bands, each one lever and one lesson. Orientation is
+            box count × placement; hero side follows the spiral; the parent owns the width.
+            Delete what the study does not need.
+          </p>
+        </div>
         <DefaultsBand />
         <BillboardBand />
         <GalleryBand />

@@ -64,11 +64,18 @@ a { color: inherit; text-decoration-color: var(--accent); }
 .skip:focus { transform: none; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.masthead, .band, .colophon {
+.top, .masthead, .band, .colophon {
   width: min(100%, 1440px);
   margin-inline: auto;
   padding-inline: clamp(12px, 3vw, 40px);
 }
+/* The header: the reference's own, with the study's parody name where its logo is. */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 2rem; flex-wrap: wrap; padding-block: 1rem; border-bottom: 1px solid var(--line, currentColor); }
+.wordmark { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; text-decoration: none; color: inherit; }
+.top__nav ul { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.top__nav a { text-decoration: none; }
+.top__nav [aria-current] { font-weight: 700; border-bottom: 2px solid currentColor; }
+.top__nav span { opacity: 0.7; }
 .masthead { padding-block: 2rem 1rem; }
 .masthead h1 { font-size: clamp(1.5rem, 3vw, 2.5rem); margin: 0 0 0.25rem; letter-spacing: -0.01em; }
 .masthead__claim { max-width: var(--measure); color: var(--muted); margin: 0; }
