@@ -20,7 +20,7 @@ S = {
  "06-espn": ("GIFspn", "barlowc", {}, "#cc0000", "#ffffff"),
  "07-coinbase": ("GIFbase", "inter", {"wght": 700}, "#0052ff", "#ffffff"),
  "08-x": ("GIFx", "inter", {"wght": 800}, "#0f1419", "#ffffff"),
- "09-irs": ("GIFrs", "sourcesans", {"wght": 700}, "#002d62", "#ffffff"),
+ "09-irs": ("GIF.gov", "sourcesans", {"wght": 700}, "#002d62", "#ffffff"),
  "10-tacobell": ("GIFbell", "montserrat", {"wght": 900}, "#501098", "#ffffff"),
  "11-northwestern": ("GIFmutual", "sourcesans", {"wght": 700}, "#0e497b", "#ffb81c"),
  "12-hotnnow": ("GIFn'now", "archivo", {"wght": 900, "wdth": 125}, "#0b145f", "#febc12"),

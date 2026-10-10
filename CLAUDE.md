@@ -213,7 +213,7 @@ README: the smallest line, and that no screen-reader user has tested it.
 ## Brand
 
 - **The study's brand is a parody name**: `GIF` in capitals, then the tail of
-  the reference's name in lower case (GIFbnb, GIFspn, GIFflix, GIFrs, GIFx,
+  the reference's name in lower case (GIFbnb, GIFspn, GIFflix, GIF.gov, GIFx,
   GIFbase, GIFmutual, GIFn'now, GIFbell, GIFipedia, GIFify, GIFmilk Records).
   Do not use GIFcommit as
   a service's name; it is only the npm scope of the library.
