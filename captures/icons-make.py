@@ -16,7 +16,7 @@ S = {
  "02-spotify": ("GIFify", "montserrat", {"wght": 800}, "#121212", "#1db954"),
  "03-netflix": ("GIFflix", "jost", {"wght": 700}, "#141414", "#e50914"),
  "04-wikipedia": ("GIFipedia", "fraunces", {"wght": 700, "opsz": 72, "SOFT": 50, "WONK": 0}, "#f3ecdd", "#b4261f"),
- "05-nmr": ("No Milk Records", "archivonarrow", {"wght": 700}, "#b0231f", "#ffffff"),
+ "05-nmr": ("GIFmilk Records", "archivonarrow", {"wght": 700}, "#b0231f", "#ffffff"),
  "06-espn": ("GIFspn", "barlowc", {}, "#cc0000", "#ffffff"),
  "07-coinbase": ("GIFbase", "inter", {"wght": 700}, "#0052ff", "#ffffff"),
  "08-x": ("GIFx", "inter", {"wght": 800}, "#0f1419", "#ffffff"),
