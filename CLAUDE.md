@@ -254,6 +254,32 @@ CLAUDE.md, specs), `style` (appearance only, no behaviour), `refactor`,
 - History is not rewritten after a study is published, except to bring a
   repo that broke this rule into line (Greg did that once, 2026-10-08).
 
+## Publishing a study
+
+A study is done when it is published, and publishing is these steps, in order.
+Do them without asking; they are the standing pattern. (Greg, 2026-10-05 and
+2026-10-10.)
+
+1. A public repository named `golden-grids-study-NN-name`, with the Pages source
+   set to Actions (`gh api -X POST repos/<owner>/<repo>/pages -f
+   build_type=workflow`), the topics `golden-grids` and `layout-study`, and a
+   description that says it is an unaffiliated layout study.
+2. Push `main`; wait for the deploy; open the live pages and run
+   `captures/scan.cjs` and `captures/cells.cjs` against them.
+3. A row in the Showcase table of the library's README (a `docs:` commit to
+   the library's `main`), and the name in rule 5 of `docs/program/PROGRAM.md`
+   if it is a new parody name.
+4. **An issue on the marketing site's board, every time.** The gallery at
+   `gregoryedgerton/golden-grids-site` is built from one file per study, and
+   nobody adds that file unless the board says a study is waiting. Run
+   `node captures/site-issue.cjs` once the first deploy is live: it opens
+   "Gallery: add ⟨Brand⟩ (Study NN)" on that repository with the live URL, the
+   day of the first deploy and what the site's study file needs (number,
+   published, brand, reference, subject, url, colours, face, icon). It will not
+   open a second issue for the same study; `--dry` prints the issue instead.
+   Only the issue is opened from here: the change to the site is made in the
+   site's own repository, by its own loop (issue, pull request, review, merge).
+
 ## The catalogue
 
 `src/App.tsx` stacks twelve bands from `src/bands/`. Each is one copyable

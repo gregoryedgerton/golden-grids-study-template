@@ -27,7 +27,11 @@ S = {
  "13-airbnb": ("GIFbnb", "figtree", {"wght": 800}, "#e31c5f", "#ffffff"),
  "14-homedepot": ("GIFdepot", "inter", {"wght": 800}, "#f96302", "#ffffff"),
  "15-nvidia": ("GIFvidia", "barlowc", {}, "#000000", "#76b900"),
+ "16-actionpark": ("GIFpark", "montserrat", {"wght": 900}, "#4a1fa8", "#ffd21f"),
+ "17-npr": ("GIF.org", "inter", {"wght": 800}, "#ffffff", "#222222"),
 }
+# A study whose mark is three blocks, one letter on each: the block colours, and the letter colour.
+BLOCKS = {"17-npr": (("#d62021", "#222222", "#237bbd"), "#ffffff")}
 def font(name, axes):
     f = TTFont(F + name + ".ttf")
     if "fvar" in f:
@@ -50,10 +54,29 @@ def place(d, b, x, y, w, h):
     x0, y0, x1, y1 = b; s = min(w / (x1 - x0), h / (y1 - y0))
     tx = x + (w - (x1 - x0) * s) / 2 - x0 * s; ty = y + (h + (y1 - y0) * s) / 2 + y0 * s
     return f'<path transform="translate({tx:.3f} {ty:.3f}) scale({s:.5f} {-s:.5f})" d="{d}"', s * (y1 - y0)
+def blocks(f, x, y, w, h, cols, ink, gap=0.0):
+    """G, I and F, each centred on its own block; the three blocks fill x,y,w,h."""
+    out = ""; bw = (w - 2 * gap) / 3
+    for i, ch in enumerate("GIF"):
+        d, b = outline(f, ch); bx = x + i * (bw + gap)
+        p, _ = place(d, b, bx + bw * 0.2, y + h * 0.22, bw * 0.6, h * 0.56)
+        out += f'<rect x="{bx:.3f}" y="{y}" width="{bw:.3f}" height="{h}" fill="{cols[i]}"/>{p} fill="{ink}"/>'
+    return out
 for k in (sys.argv[1:] or S):
     brand, fn, axes, bg, ink = S[k]; f = font(fn, axes)
     d, b = outline(f, "GIF")
     pub = (H + k if k != "template" else os.path.expanduser("~/Sites/golden-grids-study-template")) + "/public/"
+    if k in BLOCKS:
+        cols, li = BLOCKS[k]
+        open(pub + "favicon.svg", "w").write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><clipPath id="r"><rect width="32" height="32" rx="6"/></clipPath><g clip-path="url(#r)">{blocks(f, 0, 0, 32, 32, cols, li)}</g></svg>\n')
+        open(pub + "tile.svg", "w").write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><rect width="180" height="180" fill="{bg}"/>{blocks(f, 0, 0, 180, 180, cols, li)}</svg>\n')
+        # The tail of the name sits on the blocks' baseline at their letters' size, a small gap after the last block; the lockup is centred.
+        _, bi = outline(f, "I"); sc = 170 * 0.56 / (bi[3] - bi[1]); base = 150 + 170 * 0.78
+        dn, bn = outline(f, brand[3:]); tw = (bn[2] - bn[0]) * sc; gap = 14; x0 = (1200 - (510 + gap + tw)) / 2
+        pn = f'<path transform="translate({x0 + 510 + gap - bn[0] * sc:.3f} {base:.3f}) scale({sc:.5f} {-sc:.5f})" d="{dn}"'
+        ds, bs = outline(f, "a Golden Grids layout study"); ps, _ = place(ds, bs, 120, 400, 960, 46)
+        open(pub + "og.svg", "w").write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="{bg}"/>{blocks(f, x0, 150, 510, 170, cols, li)}{pn} fill="{ink}"/>{ps} fill="{ink}" opacity="0.85"/></svg>\n')
+        print(k, brand); continue
     p, _ = place(d, b, 3, 6, 26, 20)
     open(pub + "favicon.svg", "w").write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="{bg}"/>{p} fill="{ink}"/></svg>\n')
     p, _ = place(d, b, 30, 50, 120, 80)

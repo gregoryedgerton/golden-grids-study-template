@@ -18,3 +18,10 @@ rebuild at the same three widths as `study-390.png`, `study-820.png`, and
 
 These files are commentary on a named site. They are not redistributed as
 assets of the study and nothing from them is copied into the build.
+
+## Scripts
+
+- `scan.cjs`: overflow, the fitted-line floor and axe, in Chrome and WebKit, at three widths and in both schemes.
+- `cells.cjs`: opens every expandable square at a phone width and fails on overflow or a head that drifts.
+- `icons-make.py`, `icons-raster.cjs`: the GIF icons and the share card, from the study's face and colours.
+- `site-issue.cjs`: run once, after the study's first deploy is live. It opens the "add this study to the gallery" issue on the marketing site's board (`gregoryedgerton/golden-grids-site`) from `src/study.json`, so a published study is never missing from the site because nobody knew. `--dry` prints the issue and opens nothing.

@@ -102,6 +102,9 @@ library is consumed from npm at its published version, never linked locally.
       reduced motion gives a static page, tested with the device setting.
 - [ ] "Notes for review" records what a reviewer should know, as facts, without a verdict.
 - [ ] `src/study.json` is filled in: notice, pages reviewed, what is real, what is invented, asset sources.
+- [ ] After the first deploy: `node captures/site-issue.cjs` has opened the
+      "add this study to the gallery" issue on the marketing site's board
+      (`gregoryedgerton/golden-grids-site`). Every published study gets one.
 
 ---
 
