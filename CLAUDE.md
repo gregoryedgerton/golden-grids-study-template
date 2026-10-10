@@ -214,7 +214,8 @@ README: the smallest line, and that no screen-reader user has tested it.
 
 - **The study's brand is a parody name**: `GIF` in capitals, then the tail of
   the reference's name in lower case (GIFbnb, GIFspn, GIFflix, GIF.gov, GIFx,
-  GIFbase, GIFmutual, GIFn'now, GIFbell, GIFipedia, GIFify, GIFmilk Records).
+  GIFbase, GIFmutual, GIFn'now, GIFbell, GIFipedia, GIFify, GIFmilk Records,
+  GIFdepot, GIFvidia, GIFpark, GIF.org).
   Do not use GIFcommit as
   a service's name; it is only the npm scope of the library.
 - **A play on the reference's premium tier or named service carries the
@@ -222,6 +223,14 @@ README: the smallest line, and that no screen-reader user has tested it.
 - Write the name exactly so; never change its case in CSS. The notice in
   `src/study.json` says it is a parody name, and the disclosure lists it
   under what is invented. (Greg, 2026-10-09.)
+- **The parody name is the subject's name in the copy, and the pages speak as
+  that brand would**: a park's site promotes the park, a newsroom reports in
+  its own name, even when the subject is real and the facts are a third
+  party's. The real name, whose facts or reporting these are, and anything the
+  brand's own site would leave out go in the notice and the disclosure. A
+  third-party work about the subject (a documentary, a review) may supply
+  short attributed quotations, never a section, a headline or a fact, and is
+  named in the disclosure, not in the copy. (Greg, 2026-10-10, Study 16.)
 - **The header is the reference's header.** Take its structure from the
   page being rebuilt: the parody name where the logo is, its nav items, its
   search, its tabs. Do not write "layout study", a study number or the
