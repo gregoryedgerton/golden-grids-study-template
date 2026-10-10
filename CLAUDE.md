@@ -229,8 +229,11 @@ README: the smallest line, and that no screen-reader user has tested it.
   party's. The real name, whose facts or reporting these are, and anything the
   brand's own site would leave out go in the notice and the disclosure. A
   third-party work about the subject (a documentary, a review) may supply
-  short attributed quotations, never a section, a headline or a fact, and is
-  named in the disclosure, not in the copy. (Greg, 2026-10-10, Study 16.)
+  short attributed quotations, never a section, a headline or a fact. It is
+  named only in the credits of a page that shows one of its quotations; a page
+  that shows none does not mention it. Where a quotation names the real
+  subject, the parody name takes its place, without brackets, and that page's
+  credits say the quotation was altered. (Greg, 2026-10-10, Study 16.)
 - **The header is the reference's header.** Take its structure from the
   page being rebuilt: the parody name where the logo is, its nav items, its
   search, its tabs. Do not write "layout study", a study number or the
