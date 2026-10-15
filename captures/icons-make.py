@@ -29,6 +29,7 @@ S = {
  "15-nvidia": ("GIFvidia", "barlowc", {}, "#000000", "#76b900"),
  "16-actionpark": ("GIFpark", "montserrat", {"wght": 900}, "#4a1fa8", "#ffd21f"),
  "17-npr": ("GIF.org", "inter", {"wght": 800}, "#ffffff", "#222222"),
+ "18-ikea": ("GIFea", "notosans", {"wght": 700, "wdth": 100}, "#0058a3", "#ffdb00"),
 }
 # A study whose mark is three blocks, one letter on each: the block colours, and the letter colour.
 BLOCKS = {"17-npr": (("#d62021", "#222222", "#237bbd"), "#ffffff")}
