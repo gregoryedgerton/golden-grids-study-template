@@ -238,7 +238,7 @@ never shows any of these, even inert, even when the reference has them:
 - Links to the reference's sign-in, account or app pages anywhere, including
   the disclosure. For a bank, exchange, payment, government or social-network
   reference, the pages name the reference but do not link to it at all; the
-  README keeps the addresses (GIFbank, GIFbase, GIF.gov, GIFin, GIFflix, GIFx
+  README keeps the addresses (GIFbank, GIFbase, GIF;gov, GIFin, GIFflix, GIFx
   since 2026-10-17).
 - Anything that imitates a government site's official banner, a seal or a
   padlock "secure" notice.
@@ -249,7 +249,7 @@ reference's: `golden-grids-study-NN-gifbase`, not `…-coinbase`.
 ## Brand
 
 - **The study's brand is a parody name**: `GIF` in capitals, then the tail of
-  the reference's name in lower case (GIFbnb, GIFspn, GIFflix, GIF.gov, GIFx,
+  the reference's name in lower case (GIFbnb, GIFspn, GIFflix, GIF;gov, GIFx,
   GIFbase, GIFmutual, GIFn'now, GIFbell, GIFipedia, GIFify, GIFmilk Records,
   GIFdepot, GIFvidia, GIFpark, GIF.org, GIFea, GIFbank, GIFin).
   Do not use GIFcommit as

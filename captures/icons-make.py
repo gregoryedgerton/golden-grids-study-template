@@ -12,29 +12,29 @@ H = os.path.expanduser("~/Sites/golden-grids-study-")
 # repo: (brand, font file, axes, background, ink)
 S = {
  "template": ("GIFname", "inter", {"wght": 800}, "#111111", "#ffffff"),
- "01-airbnb": ("GIFbnb", "figtree", {"wght": 800}, "#ff385c", "#ffffff"),
- "02-spotify": ("GIFify", "montserrat", {"wght": 800}, "#121212", "#1db954"),
- "03-netflix": ("GIFflix", "jost", {"wght": 700}, "#141414", "#e50914"),
- "04-wikipedia": ("GIFipedia", "fraunces", {"wght": 700, "opsz": 72, "SOFT": 50, "WONK": 0}, "#f3ecdd", "#b4261f"),
- "05-nmr": ("GIFmilk Records", "archivonarrow", {"wght": 700}, "#b0231f", "#ffffff"),
- "06-espn": ("GIFspn", "barlowc", {}, "#cc0000", "#ffffff"),
- "07-coinbase": ("GIFbase", "inter", {"wght": 700}, "#0052ff", "#ffffff"),
- "08-x": ("GIFx", "inter", {"wght": 800}, "#0f1419", "#ffffff"),
- "09-irs": ("GIF.gov", "sourcesans", {"wght": 700}, "#002d62", "#ffffff"),
- "10-tacobell": ("GIFbell", "montserrat", {"wght": 900}, "#501098", "#ffffff"),
- "11-northwestern": ("GIFmutual", "sourcesans", {"wght": 700}, "#0e497b", "#ffb81c"),
- "12-hotnnow": ("GIFn'now", "archivo", {"wght": 900, "wdth": 125}, "#0b145f", "#febc12"),
- "13-airbnb": ("GIFbnb", "figtree", {"wght": 800}, "#e31c5f", "#ffffff"),
- "14-homedepot": ("GIFdepot", "inter", {"wght": 800}, "#f96302", "#ffffff"),
- "15-nvidia": ("GIFvidia", "barlowc", {}, "#000000", "#76b900"),
- "16-actionpark": ("GIFpark", "montserrat", {"wght": 900}, "#4a1fa8", "#ffd21f"),
- "17-npr": ("GIF.org", "inter", {"wght": 800}, "#ffffff", "#222222"),
- "18-ikea": ("GIFea", "notosans", {"wght": 700, "wdth": 100}, "#0058a3", "#ffdb00"),
+ "01-gifbnb": ("GIFbnb", "figtree", {"wght": 800}, "#ff385c", "#ffffff"),
+ "02-gifify": ("GIFify", "montserrat", {"wght": 800}, "#121212", "#1db954"),
+ "03-gifflix": ("GIFflix", "jost", {"wght": 700}, "#141414", "#e50914"),
+ "04-gifipedia": ("GIFipedia", "fraunces", {"wght": 700, "opsz": 72, "SOFT": 50, "WONK": 0}, "#f3ecdd", "#b4261f"),
+ "05-gifmilk": ("GIFmilk Records", "archivonarrow", {"wght": 700}, "#b0231f", "#ffffff"),
+ "06-gifspn": ("GIFspn", "barlowc", {}, "#cc0000", "#ffffff"),
+ "07-gifbase": ("GIFbase", "inter", {"wght": 700}, "#0052ff", "#ffffff"),
+ "08-gifx": ("GIFx", "inter", {"wght": 800}, "#0f1419", "#ffffff"),
+ "09-gifgov": ("GIF;gov", "sourcesans", {"wght": 700}, "#002d62", "#ffffff"),
+ "10-gifbell": ("GIFbell", "montserrat", {"wght": 900}, "#501098", "#ffffff"),
+ "11-gifmutual": ("GIFmutual", "sourcesans", {"wght": 700}, "#0e497b", "#ffb81c"),
+ "12-gifnnow": ("GIFn'now", "archivo", {"wght": 900, "wdth": 125}, "#0b145f", "#febc12"),
+ "13-gifbnb": ("GIFbnb", "figtree", {"wght": 800}, "#e31c5f", "#ffffff"),
+ "14-gifdepot": ("GIFdepot", "inter", {"wght": 800}, "#f96302", "#ffffff"),
+ "15-gifvidia": ("GIFvidia", "barlowc", {}, "#000000", "#76b900"),
+ "16-gifpark": ("GIFpark", "montserrat", {"wght": 900}, "#4a1fa8", "#ffd21f"),
+ "17-giforg": ("GIF.org", "inter", {"wght": 800}, "#ffffff", "#222222"),
+ "18-gifea": ("GIFea", "notosans", {"wght": 700, "wdth": 100}, "#0058a3", "#ffdb00"),
  "19-gifbank": ("GIFbank", "figtree", {"wght": 700}, "#008a00", "#ffffff"),
- "20-linkedin": ("GIFin", "sourcesans", {"wght": 700}, "#0a66c2", "#ffffff"),
+ "20-gifin": ("GIFin", "sourcesans", {"wght": 700}, "#0a66c2", "#ffffff"),
 }
 # A study whose mark is three blocks, one letter on each: the block colours, and the letter colour.
-BLOCKS = {"17-npr": (("#d62021", "#222222", "#237bbd"), "#ffffff")}
+BLOCKS = {"17-giforg": (("#d62021", "#222222", "#237bbd"), "#ffffff")}
 def font(name, axes):
     f = TTFont(F + name + ".ttf")
     if "fvar" in f:
