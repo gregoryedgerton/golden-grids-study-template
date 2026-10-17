@@ -210,6 +210,42 @@ README: the smallest line, and that no screen-reader user has tested it.
   not read an SVG icon and otherwise show whatever icon the host last served.
   `captures/icons-make.py` and `icons-raster.cjs` in the template draw them.
 
+## Safe Browsing
+
+Every study is served from the same origin (`gregoryedgerton.github.io`), and
+Google Safe Browsing flags an origin, not a page. On 2026-10-16 it flagged the
+whole origin as "social engineering" after GIFbank's demo sign-in, which put
+every study, the marketing site and everything else on that origin behind a
+red warning. The scanner reads appearance: a brand-styled page that looks as if
+it collects credentials or personal data is treated as phishing, however
+clearly it is labelled a study and whether or not anything is sent. So a study
+never shows any of these, even inert, even when the reference has them:
+
+- A sign-in: no user name or password field, no sign-in or sign-up form, no
+  "Sign in", "Log in", "Create account" or "Join" in the header, menus or
+  footer. Where a signed-in reference needs a way in, use GIFbank's Enter
+  control and parody notice (`ParodyNotice` in that study's `src/lib/Page.tsx`).
+- Account security: change password, two-step verification, verification
+  codes, "where you're signed in", security alerts, "verify your identity",
+  "report fraud", "last log in".
+- Personal data fields beyond a single email box that says nothing is sent:
+  no name, phone, address, ZIP, date of birth, Social Security, card or bank
+  fields, and no personal autofill token on any input (`autoComplete="off"`).
+- Money moving: no transfer, pay, buy, sell, deposit, withdraw, subscribe or
+  donate control with an amount. Prices and balances may be shown as facts.
+- Downloads: no "Download", "Install", "Get the app" or "Update now" control,
+  and no link to an app store or a file.
+- Links to the reference's sign-in, account or app pages anywhere, including
+  the disclosure. For a bank, exchange, payment, government or social-network
+  reference, the pages name the reference but do not link to it at all; the
+  README keeps the addresses (GIFbank, GIFbase, GIF.gov, GIFin, GIFflix, GIFx
+  since 2026-10-17).
+- Anything that imitates a government site's official banner, a seal or a
+  padlock "secure" notice.
+
+The repository, and so the web address, carries the parody name, never the
+reference's: `golden-grids-study-NN-gifbase`, not `…-coinbase`.
+
 ## Brand
 
 - **The study's brand is a parody name**: `GIF` in capitals, then the tail of
@@ -272,7 +308,8 @@ A study is done when it is published, and publishing is these steps, in order.
 Do them without asking; they are the standing pattern. (Greg, 2026-10-05 and
 2026-10-10.)
 
-1. A public repository named `golden-grids-study-NN-name`, with the Pages source
+1. A public repository named `golden-grids-study-NN-<parody name>` (lower
+   case, letters only: `golden-grids-study-19-gifbank`), with the Pages source
    set to Actions (`gh api -X POST repos/<owner>/<repo>/pages -f
    build_type=workflow`), the topics `golden-grids` and `layout-study`, and a
    description that says it is an unaffiliated layout study.
